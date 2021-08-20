@@ -1,6 +1,18 @@
 import p5 from "p5";
-import sketch from "./2021-08-20";
 
-console.log(sketch);
+const sketchImports = [
+  import("./2021-08-20-1"),
+  import("./2021-08-20")
+];
 
-new p5(sketch, window.document.getElementById('container'));
+window.addEventListener('DOMContentLoaded', () => {
+  const container = window.document.getElementById('container');
+  Promise.all(sketchImports).then(sketches => {
+    sketches.forEach(s => {
+      let node = document.createElement('div');
+      container.appendChild(node);
+      new p5(s.default, node);
+    })
+  });
+});
+
