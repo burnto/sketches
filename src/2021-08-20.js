@@ -23,10 +23,8 @@ let sketch = (p) => {
       let from = p.color(200, 165, 32, 0.01);
       let to = p.color(72, 61, 139, 0.01);
       let i = 0.5 + Math.sin((f / iters) * Math.PI * 2) / 2;
-      // console.log(i);
 
       let c = p.lerpColor(from, to, i);
-      console.log(p.alpha(c));
 
       let x = w / 2 + (rad1 * Math.sin(angle1));
       let y = h / 2 + (rad2 * Math.cos(angle2));

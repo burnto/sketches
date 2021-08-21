@@ -1,6 +1,8 @@
 import p5 from "p5";
 
 const sketchImports = [
+  import("./2021-08-20-3"),
+  import("./2021-08-20-2"),
   import("./2021-08-20-1"),
   import("./2021-08-20")
 ];
