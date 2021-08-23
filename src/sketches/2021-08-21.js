@@ -30,7 +30,6 @@ let sketch = (p) => {
       }
       p.endShape();
     }
-
   }
 }
 
