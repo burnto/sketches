@@ -1,17 +1,24 @@
 let sketch = (p) => {
 
   let r = 0, g = 0, b = 0;
-  const w = 500;
-  const h = 500;
   const iters = 1000;
 
   p.setup = () => {
+    const w = p.currentWidth();
+    const h = p.currentWidth();
     p.createCanvas(w, h);
-    p.background(255);
-    p.frameRate(60);
+    p.frameRate(1);
     p.noStroke();
     p.colorMode(p.RGB, 255, 255, 255, 1);
     p.blendMode(p.MULTIPLY);
+  };
+
+
+  p.draw = () => {
+    const w = p.currentWidth();
+    const h = p.currentWidth();
+    p.clear();
+    p.background(255);
     for (var f = 0; f < iters; f++) {
 
       let angle1 = f / w * 2 * Math.PI;

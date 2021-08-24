@@ -9,10 +9,12 @@ permalink: "sketches/{{ currentSketch }}/"
 ---
 
 <div class="row">
-  <div class="col-xs">
-      {% include 'sketchList.njk' %}
+  <div class="col-xs-12 col-sm-3">
+    <h1>bloc.art</h1>
+    {% include 'sketchList.njk' %}
   </div>
-  <div class="col-xs">
+  <div class="col-xs-12 col-sm-9">
     {% include 'sketch.njk' %}
   </div>
 </div>
+

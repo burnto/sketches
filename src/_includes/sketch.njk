@@ -1,15 +1,7 @@
 <div id="sketchContainer"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
-<script> 
-    const s = import("/sketches/{{ currentSketch }}.js");
-    window.addEventListener('DOMContentLoaded', () => {
-    const sketchContainer = window.document.getElementById('sketchContainer');
-    s.then(s => {
-      let node = document.createElement('div');
-      sketchContainer.appendChild(node);
-      new p5(s.default, node);
-    });
-});
-
+<script type="module"> 
+  import setupSketch from "/setupSketch.js";
+  const s = import("/sketches/{{ currentSketch }}.js");
+  setupSketch(s);
 </script>

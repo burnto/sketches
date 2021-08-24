@@ -1,14 +1,20 @@
 let sketch = (p) => {
 
-  const w = 600;
-  const h = 600;
   const iters = 10000;
 
   let startColor = p.color(0, 255, 0, 10)
   let endColor = p.color(128, 0, 128, 10)
 
   p.setup = () => {
+    const w = p.currentWidth();
+    const h = p.currentWidth();
     p.createCanvas(w, h);
+    p.frameRate(1);
+  };
+
+  p.draw = () => {
+    const w = p.currentWidth();
+    const h = p.currentWidth();
     p.background(255);
 
     for (var i = 0; i < iters; i++) {

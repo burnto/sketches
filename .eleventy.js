@@ -2,6 +2,7 @@ let Nunjucks = require("nunjucks");
 
 module.exports = (config) => {
   config.addPassthroughCopy("src/sketches");
+  config.addPassthroughCopy("src/setupSketch.js");
 
   let nunjucksEnvironment = new Nunjucks.Environment(
     new Nunjucks.FileSystemLoader("src/_includes")

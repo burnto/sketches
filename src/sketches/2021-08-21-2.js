@@ -1,25 +1,25 @@
 let sketch = (p) => {
 
-  const totalWidth = 600;
-  const totalHeight = 600;
   const padding = 40;
-  const w = totalWidth - padding * 2;
-  const h = totalHeight - padding * 2;
   const startX = padding;
   const startY = padding;
   const iters = 30;
   const framesPerCycle = 1000;
 
   let endColor = p.color(0, 0, 180, 200);
-  let startColor = p.color(0, 180, 180, 0);
+  let startColor = p.color(0, 180, 220, 100);
+
 
   p.setup = () => {
-    p.createCanvas(totalWidth, totalHeight);
+    p.createCanvas(p.currentWidth(), p.currentWidth());
     p.background(0);
+    p.frameRate(60);
     p.noFill();
   };
 
   p.draw = () => {
+    const w = p.currentWidth() - padding * 2;
+    const h = p.currentWidth() - padding * 2;
     p.background(0);
     const f = p.frameCount % framesPerCycle;
     for (let i = 0; i < iters; i++) {

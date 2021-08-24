@@ -1,11 +1,7 @@
 let sketch = (p) => {
 
-  const totalWidth = 600;
-  const totalHeight = 600;
   const padding = 40;
   const iters = 40;
-  const w = totalWidth - padding * 2;
-  const h = totalHeight - padding * 2;
   const startX = padding;
   const startY = padding;
 
@@ -13,10 +9,15 @@ let sketch = (p) => {
   let startColor = p.color(10, 0, 120, 100);
 
   p.setup = () => {
-    p.createCanvas(totalWidth, totalHeight);
+    p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.noFill();
+  };
+
+  p.draw = () => {
+    const w = p.currentWidth() - padding * 2;
+    const h = p.currentWidth() - padding * 2;
     p.background(0);
 
-    p.noFill();
     for (let i = 0; i < iters; i++) {
       let c = p.lerpColor(startColor, endColor, i / iters);
       p.stroke(c);

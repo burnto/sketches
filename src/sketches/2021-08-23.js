@@ -1,9 +1,5 @@
-export default (p) => {
-  const totalWidth = 600;
-  const totalHeight = 600;
+let sketch = (p) => {
   const padding = 40;
-  const w = totalWidth - padding * 2;
-  const h = totalHeight - padding * 2;
   const startX = padding;
   const startY = padding;
   const iters = 50;
@@ -13,15 +9,17 @@ export default (p) => {
   let startColor = p.color(0, 180, 180, 100);
 
   p.setup = () => {
-    p.createCanvas(totalWidth, totalHeight);
+    p.createCanvas(p.currentWidth(), p.currentWidth());
     p.background(255);
     p.noFill();
     p.stroke(0, 0, 0, 100);
-    p.strokeWeight(1);
+    p.strokeWeight(0.5);
     p.noFill;
   };
 
   p.draw = () => {
+    const w = p.currentWidth() - padding * 2;
+    const h = p.currentWidth() - padding * 2;
     p.background(240, 240, 240);
     for (let i = 0; i < iters; i++) {
       const th = i * Math.PI * 2 / iters;
@@ -37,10 +35,14 @@ export default (p) => {
         p.stroke(color);
         p.push();
         p.rotate(th2);
-        p.line(0, 0, 300, 0);
+        p.line(0, 0, 500, 0);
         p.pop();
       }
       p.pop();
     }
   }
 }
+
+
+
+export default sketch;
