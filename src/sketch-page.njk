@@ -1,19 +1,16 @@
 ---
-title: bloc.art
 layout: "base.njk"
 pagination:
     data: sketches
     size: 1
     alias: currentSketch
+eleventyComputed:
+  title: "{{ currentSketch }}"
 permalink: "sketches/{{ currentSketch }}/"
 ---
 
 <div class="row">
-  <div class="col-xs-12 col-sm-3">
-    <h1>bloc.art</h1>
-    {% include 'sketchList.njk' %}
-  </div>
-  <div class="col-xs-12 col-sm-9">
+  <div class="col-xs-12">
     {% include 'sketch.njk' %}
   </div>
 </div>

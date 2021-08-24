@@ -1,18 +1,12 @@
 ---
-title: bloc.art
 layout: "base.njk"
 ---
 
-
-{% set currentSketch = sketches | first %}
-
 <div class="row">
-  <div class="col-xs-12 col-md-3 ">
-    <h1>bloc.art</h1>
-    {% include 'sketchList.njk' %}
-  </div>
-  <div class="col-xs-12 col-md-9 first-xs last-md">
+  <div class="col-xs-12">
+    {% set currentSketch = sketches[0] %}
     {% include 'sketch.njk' %}
   </div>
 </div>
+
 

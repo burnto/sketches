@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ title }}</title>
+    <title>bloc.art{{ title }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css">
     <style>
       html, body {
         text-align: left;
         font-family: monospace;
         margin: 30px;
+        line-height: 1.8;
       }
       canvas {
         width: 20%;
@@ -18,13 +19,68 @@
       #sketchContainer {
         max-width: 800px;
       }
+
+      footer {
+        margin-top: 50px;
+        color: #999;
+      }
+
+      footer a {
+        color: #999;
+      }
+
+      a {
+        color: black;
+      }
+
+      a:hover {
+        color: black;
+        background-color: yellow;
+      }
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
     <script src="/setupSketch.js" type="module" ></script>
   </head>
   <body>
+    <header>
+      <h1>
+          {% if title %}
+            <a href="/">bloc.art</a>
+          {% else %}
+            bloc.art
+          {% endif %}
+
+      </h1>
+    </header>
     <main>
       {{ content | safe }}
     </main>
+
+    <footer>
+
+<p>
+<a href="/">bloc.art</a> is a generative graphics project. 
+</p>
+
+
+<nav>
+Archive:
+
+{% for sketch in sketches %}
+  <div>
+    {% if sketch != currentSketch %}
+    <a href="/sketches/{{ sketch }}">{{sketch}}</a>
+      {% endif %}
+  </div>
+{% else %}
+  <div>
+    Nothing here
+  </div>
+{% endfor %}
+
+</nav>
+
+    </footer>
   </body>
 </html>
