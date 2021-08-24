@@ -4,9 +4,15 @@ layout: "base.njk"
 pagination:
     data: sketches
     size: 1
-    alias: sketch
-permalink: "sketches/{{ sketch }}/"
+    alias: currentSketch
+permalink: "sketches/{{ currentSketch }}/"
 ---
 
-{% include 'sketch.njk' %}
-
+<div class="row">
+  <div class="col-xs">
+      {% include 'sketchList.njk' %}
+  </div>
+  <div class="col-xs">
+    {% include 'sketch.njk' %}
+  </div>
+</div>

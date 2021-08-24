@@ -4,19 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css">
     <style>
       html, body {
         text-align: left;
         font-family: monospace;
         padding: 20px;
       }
-    </style>
 
+    </style>
   </head>
   <body>
     <header>
       <h1>{{title}}</h1>
+
+
     </header>
+
     <main>
       {{ content | safe }}
     </main>

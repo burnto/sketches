@@ -9,6 +9,8 @@ module.exports = (config) => {
 
   config.setLibrary("njk", nunjucksEnvironment);
 
+  config.addWatchTarget("./src/_includes");
+
   return {
     dir: {
       input: "src",

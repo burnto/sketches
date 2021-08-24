@@ -1,0 +1,14 @@
+{% for sketch in sketches %}
+  <div>
+    {% if sketch == currentSketch %}
+      {{sketch}} *
+    {% else %}
+    <a href="/sketches/{{ sketch }}">{{sketch}}</a>
+      {% endif %}
+  </div>
+{% else %}
+  <div>
+    Nothing here
+  </div>
+{% endfor %}
+
