@@ -1,0 +1,21 @@
+---
+title: bloc.art
+layout: "base.njk"
+---
+
+<p>
+bloc.art is a generative creator cooperative.
+</p>
+
+{% set sketch = sketches | first %}
+
+{% include 'sketch.njk' %}
+
+{% for sketch in sketches %}
+  <div>
+    <a href="sketches/{{ sketch }}">{{sketch}}</a></div>
+{% else %}
+  <div>
+    Nothing here
+  </div>
+{% endfor %}

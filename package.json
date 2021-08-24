@@ -3,16 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "parcel serve src/index.html",
-    "build": "parcel build src/index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "eleventy --serve",
+    "build": "eleventy"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "p5": "^1.4.0"
-  },
   "devDependencies": {
-    "parcel-bundler": "^1.12.5"
+    "@11ty/eleventy": "^0.12.1",
+    "nunjucks": "^3.2.3"
   }
 }
