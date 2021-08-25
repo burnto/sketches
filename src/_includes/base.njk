@@ -68,9 +68,7 @@ Archive:
 
 {% for entry in entries %}
   <div>
-    {% if entry != currentEntry %}
     <a href="/{{ entry }}">{{entry}}</a>
-      {% endif %}
   </div>
 {% else %}
   <div>
