@@ -4,9 +4,11 @@ const path = require('path');
 module.exports = function () {
   const entriesPath = path.join(__dirname, '..', 'entries')
   const fileNames = fs.readdirSync(entriesPath);
-  const sketchNames = fileNames.map((f) => {
-    return f.replace('.js', '');
-  });
+  const sketchNames = fileNames
+    .filter(f => !f.match('-draft'))
+    .map((f) => {
+      return f.replace('.js', '');
+    });
   sketchNames.sort((n1, n2) => {
     if (n1.length === 10) {
       n1 += "-0";
