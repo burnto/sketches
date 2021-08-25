@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = function () {
-  const sketchesPath = path.join(__dirname, '..', 'sketches')
-  const fileNames = fs.readdirSync(sketchesPath);
+  const entriesPath = path.join(__dirname, '..', 'entries')
+  const fileNames = fs.readdirSync(entriesPath);
   const sketchNames = fileNames.map((f) => {
     return f.replace('.js', '');
   });

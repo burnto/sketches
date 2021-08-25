@@ -1,0 +1,10 @@
+<div class='sketch'>
+  <div id="sketchContainer"></div>
+  <caption><a href="/{{currentEntry}}">{{currentEntry}}</a></caption>
+</div>
+
+<script type="module"> 
+  import load from "/load.js";
+  const s = import("/entries/{{ currentEntry }}.js");
+  load(s);
+</script>

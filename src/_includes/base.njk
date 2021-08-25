@@ -40,7 +40,6 @@
 
     </style>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
-    <script src="/setupSketch.js" type="module" ></script>
   </head>
   <body>
     <header>
@@ -67,10 +66,10 @@
 <nav>
 Archive:
 
-{% for sketch in sketches %}
+{% for entry in entries %}
   <div>
-    {% if sketch != currentSketch %}
-    <a href="/sketches/{{ sketch }}">{{sketch}}</a>
+    {% if entry != currentEntry %}
+    <a href="/{{ entry }}">{{entry}}</a>
       {% endif %}
   </div>
 {% else %}

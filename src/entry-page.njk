@@ -1,0 +1,17 @@
+---
+layout: "base.njk"
+pagination:
+    data: entries
+    size: 1
+    alias: currentEntry
+eleventyComputed:
+  title: "{{ currentEntry }}"
+permalink: "/{{ currentEntry }}/"
+---
+
+<div class="row">
+  <div class="col-xs-12">
+    {% include 'entry.njk' %}
+  </div>
+</div>
+
