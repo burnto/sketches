@@ -3,7 +3,6 @@ import { MyP5 } from "../types";
 export default (p: MyP5) => {
   p.setup = () => {
     p.createCanvas(p.currentWidth(), p.currentWidth(), p.WEBGL);
-    p.frameRate(30);
     p.background(100);
     p.noCursor();
     p.noStroke();
