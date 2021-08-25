@@ -2,12 +2,12 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = function () {
-  const entriesPath = path.join(__dirname, '..', 'entries')
+  const entriesPath = path.join(__dirname, '..', 'js', 'entries',)
   const fileNames = fs.readdirSync(entriesPath);
   const sketchNames = fileNames
     .filter(f => !f.match('-draft'))
     .map((f) => {
-      return f.replace('.js', '');
+      return f.replace(/.(?:js|ts)/, '');
     });
   sketchNames.sort((n1, n2) => {
     if (n1.length === 10) {

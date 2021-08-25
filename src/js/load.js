@@ -12,13 +12,11 @@ export default (sketchImport) => {
           return node.offsetWidth;
         }
         f(p5inst);
-        const noRedraw = !p5inst.draw;
-        console.log(noRedraw);
         p5inst.windowResized = () => {
           const newWidth = node.offsetWidth;
           const r = newWidth / p5inst.width;
           const newHeight = r * p5inst.height;
-          p5inst.resizeCanvas(newWidth, newHeight, noRedraw)
+          p5inst.resizeCanvas(newWidth, newHeight)
         }
       }
       new p5(instWrapper, node);
