@@ -13,11 +13,11 @@ export default (p: MyP5) => {
   p.draw = () => {
     r += 1;
     p.noStroke();
-    p.background(0);
+    p.background(238);
     p.noiseDetail(2, 0.2);
-    const pxSize = p.width / 40;
-    const offsetX = p.frameCount / 2;
-    const offsetY = p.frameCount / 3;
+    const pxSize = p.width / 30;
+    const offsetX = p.frameCount / 4;
+    const offsetY = p.frameCount / 5;
     colorDistance = p.dist(p.width / 2, p.height / 2, p.mouseX, p.mouseY) / 10;
     for (let y = 0; y < p.height; y += pxSize) {
       for (let x = 0; x < p.width; x += pxSize) {
@@ -40,7 +40,7 @@ export default (p: MyP5) => {
         const b = noiseValB * 255;
 
         p.fill(r, g, b);
-        p.circle(x + pxSize / 2, y + pxSize / 2, pxSize - 4);
+        p.rect(x, y, pxSize, pxSize);
       }
     }
   };
