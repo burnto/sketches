@@ -25,16 +25,16 @@ export default (p: MyP5) => {
       for (let x = 0; x < numUnits; x++) {
         p.noiseDetail(2, 0.2);
         let noiseValR = p.noise(
-          (p.mouseX + x - colorDistance + offsetX) * noiseScale,
-          (p.mouseY + y + offsetY) * noiseScale
+          (x + offsetX + 20) * noiseScale,
+          (y + offsetY + 20) * noiseScale
         );
         let noiseValG = p.noise(
-          (p.mouseX + x + offsetX) * noiseScale,
-          (p.mouseY + y + offsetY) * noiseScale
+          (x + offsetX) * noiseScale,
+          (y + offsetY) * noiseScale
         );
         let noiseValB = p.noise(
-          (p.mouseX + x + colorDistance + offsetX) * noiseScale,
-          (p.mouseY + y + offsetY) * noiseScale
+          (x + offsetX - 20) * noiseScale,
+          (y + offsetY - 20) * noiseScale
         );
         const r = noiseValR * 255;
         const g = noiseValG * 255;
@@ -44,16 +44,22 @@ export default (p: MyP5) => {
         p.translate(
           start + x * (unitSize + spacing),
           start + y * (unitSize + spacing),
-          (noiseValR - 0.5) * unitSize
+          (noiseValR - 0.5) * unitSize * 2
         );
-        p.box(unitSize);
+        p.triangle(
+          unitSize / -3,
+          unitSize / -3,
+          unitSize / 3,
+          unitSize / -3,
+          0,
+          unitSize / 4
+        );
         p.pop();
       }
     }
   };
 
   p.draw = () => {
-    p.orbitControl();
     p.background(0);
     p.ambientLight(128);
     p.pointLight(255, 255, 255, 0, 0, 0);
@@ -67,13 +73,18 @@ export default (p: MyP5) => {
     p.translate(0, 0, -wallWidth / 2 - unitSize / 2 - spacing / 2);
     drawWall(numUnits, unitSize, spacing);
     p.pop();
+
     p.push();
     p.rotateX(Math.PI / 2);
+    p.rotateZ(Math.PI);
     p.translate(0, 0, wallWidth / 2 + unitSize / 2 + spacing / 2);
     drawWall(numUnits, unitSize, spacing);
     p.pop();
+
     p.push();
     p.rotateX(-Math.PI / 2);
+    p.rotateZ(Math.PI);
+
     p.translate(0, 0, wallWidth / 2 + unitSize / 2 + spacing / 2);
     drawWall(numUnits, unitSize, spacing);
     p.pop();
