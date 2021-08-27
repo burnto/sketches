@@ -6,13 +6,9 @@ pagination:
     size: 1
     alias: currentEntry
 eleventyComputed:
-  title: "{{ currentEntry }}"
-permalink: "/{{ currentEntry }}/"
+  title: "{{ currentEntry.title }}"
+permalink: "/{{ currentEntry.baseFilename }}/"
 ---
 
-<div class="row">
-  <div class="col-xs-12">
-    {% include 'entry.njk' %}
-  </div>
-</div>
+{% include 'entry.njk' %}
 

@@ -27,11 +27,15 @@
 
       footer {
         margin-top: 50px;
-        color: #999;
+        color: #aaa;
       }
 
       footer a {
-        color: #999;
+        color: #aaa;
+      }
+
+      footer strong {
+        color: #888;
       }
 
     </style>
@@ -54,17 +58,20 @@
 
     <footer>
 
-<p>
-<a href="/">bloc.art</a> is a generative graphics project. 
+{# <p>
+  <a href="/">bloc.art</a> is a generative graphics project. 
 </p>
-
+ #}
 
 <nav>
-Archive:
 
 {% for entry in entries %}
   <div>
-    <a href="/{{ entry }}">{{entry}}</a>
+    {%- if entry == currentEntry -%}
+      <strong>{{entry.title}}</strong>
+    {%- else -%}
+      <a href="/{{ entry.baseFilename }}">{{entry.title}}</a>
+    {% endif -%}
   </div>
 {% else %}
   <div>
