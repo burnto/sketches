@@ -44,7 +44,7 @@ export default (p: MyP5) => {
         p.translate(
           start + x * (unitSize + spacing),
           start + y * (unitSize + spacing),
-          (noiseValR - 0.5) * unitSize * 2
+          (noiseValR - 0.5) * unitSize * 4
         );
         p.triangle(
           unitSize / -3,
@@ -63,8 +63,8 @@ export default (p: MyP5) => {
     p.background(0);
     p.ambientLight(128);
     p.pointLight(255, 255, 255, 0, 0, 0);
-    const numUnits = 7;
-    const unitSize = p.width / 10;
+    const numUnits = 20;
+    const unitSize = p.width / 30;
     const spacing = unitSize / 5;
     const wallWidth = wallSize(numUnits, unitSize, spacing);
     p.push();
