@@ -7,9 +7,8 @@ export default (p: MyP5) => {
 
   p.setup = () => {
     p.createCanvas(p.currentWidth(), p.currentWidth());
-    p.noStroke();
     p.noiseSeed(1);
-    p.stroke(255);
+    p.noStroke();
     p.fill(0);
     p.frameRate(30);
     skyPicker = p.createColorPicker("#F037A5");
@@ -33,7 +32,6 @@ export default (p: MyP5) => {
           p.height * 0.09 * sinVal +
           (noiseVal * p.height) / 5;
         p.curveVertex(x - 50, y);
-        p.point(x - 50, y);
       }
       p.curveVertex(p.width + 100, p.height + 100);
       p.curveVertex(-50, p.height + 100);
