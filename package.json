@@ -5,10 +5,10 @@
   "scripts": {
     "start": "npm-run-all --parallel dev:*",
     "dev:eleventy": "eleventy --serve",
-    "dev:js": "esbuild --watch src/js/entries/* src/js/load.js --outdir=_site --outbase=src/js  --sourcemap --minify",
+    "dev:js": "esbuild --watch src/js/entries/* src/js/load.js src/js/helpers.ts --outdir=_site --outbase=src/js  --sourcemap --minify",
     "dev:tsc": "tsc -noEmit",
     "prod:eleventy": "eleventy",
-    "prod:js": "tsc -noEmit && esbuild src/js/entries/* src/js/load.js --outdir=_site --outbase=src/js --minify",
+    "prod:js": "tsc -noEmit && esbuild src/js/entries/* src/js/load.js src/js/helpers.ts --outdir=_site --outbase=src/js --minify",
     "build": "run-s prod:*",
     "clean": "rm -rf _site .cache"
   },
@@ -24,6 +24,8 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
+    "p5": "^0.8.0",
+    "p5.createloop": "^0.2.8",
     "randy": "^1.5.1",
     "sentencer": "^0.2.1"
   }
