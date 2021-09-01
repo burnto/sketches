@@ -1,6 +1,6 @@
 import { MyP5 } from "../types";
 import { hashContains } from "../helpers.js";
-import { Element } from "p5";
+import p5, { Color, Element } from "p5";
 
 let sketch = (p: MyP5) => {
   let raySlider: Element;
@@ -65,8 +65,17 @@ let sketch = (p: MyP5) => {
           p.animLoop.theta / (numRays / 2) + (2 * Math.PI * j) / numRays;
         // const color = p.lerpColor(startColor, endColor, j / numRays);
 
-        const color = j % 2 === 0 ? color1Picker.value() : color2Picker.value();
-        p.stroke(color);
+        let c;
+        if (j % 2) {
+          c = p.color(color1Picker.value() as string);
+        } else {
+          c = p.color(color2Picker.value() as string);
+        }
+        p.stroke(c);
+        // const color = p.color(
+        //   j % 2 === 0 ? color1Picker.value() : color2Picker.value()
+        // );
+        // p.stroke(color);
         p.push();
         p.rotate(th2);
         p.line(0, 0, 1000, 0);
@@ -76,6 +85,6 @@ let sketch = (p: MyP5) => {
     }
   };
 };
-new p5(sketch, "blocCanvas");
+new p5(sketch, document.getElementById("blocCanvas")!);
 
 // export default sketch;
