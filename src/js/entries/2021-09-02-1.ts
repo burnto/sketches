@@ -38,18 +38,19 @@ let sketch = (p: MyP5) => {
   let delaunator: Delaunator<[number, number]>;
   p.setup = () => {
     p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createDiv("(randomly seeded; refresh to regenerate)");
     p.frameRate(30);
     p.background(10);
     p.colorMode(p.HSB, 1);
 
-    p.stroke(baseHue, baseSaturation, baseBrightness - 0.1);
+    p.stroke(baseHue, baseSaturation, baseBrightness - 0.05);
     p.fill(baseHue, baseSaturation, baseBrightness);
     let coords = randomPointsRadial(numPoints, p.width / 2 - 20);
     delaunator = Delaunator.from(coords);
 
     const gif = {
       startLoop: 1,
-      endLoop: 2,
+      endLoop: 3,
       fileName: "tyvek",
       options: {
         width: 200,
@@ -75,13 +76,17 @@ let sketch = (p: MyP5) => {
 
     p.translate(p.width / 2, p.height / 2);
 
+    const numTriangles = delaunator.triangles.length / 3;
+
     for (let i = 0; i < delaunator.triangles.length; i += 3) {
       const hue =
         (1 +
           baseHue +
-          Math.sin(i / delaunator.triangles.length + p.animLoop.theta)) %
+          (0.1 * i) / delaunator.triangles.length +
+          0.2 * Math.sin(p.animLoop.theta)) %
         1;
       p.fill(hue, baseSaturation, baseBrightness);
+      p.stroke(hue, baseSaturation, baseBrightness - 0.04);
       p.triangle(
         coords[delaunator.triangles[i]][0],
         coords[delaunator.triangles[i]][1],
