@@ -3,12 +3,18 @@ import { MyP5 } from "../types";
 import random from "random";
 import Delaunator from "delaunator";
 
-const numPoints = random.int(20, 50);
+const maxPoints = 420;
+const minPoints = 42;
+const numPoints = Math.floor(
+  random.float() * random.float() * random.float(0, maxPoints - minPoints) +
+    minPoints
+);
 const baseHue = random.float();
 const hueRange = random.float(0.1, 0.3);
 const baseSaturation = random.float(0.1, 0.5);
 const baseBrightness = 0.5;
 const shadowThetaOffset = random.float(0, Math.PI * 2);
+const shadowDepthOffset = random.float(-0.2, 0.2);
 const rotationDuration = random.int(10, 30);
 const rotationDirection = random.bool() ? 1 : -1;
 
@@ -115,12 +121,13 @@ let sketch = (p: MyP5) => {
       const v = p.createVector(center[0], center[1]);
       const heading = v.heading();
       const distance = v.mag() / radius();
-      console.log(distance);
       const pts = [pt1, pt2, pt3].flat();
       const hue = (1 + baseHue + hueRange * Math.sin(heading)) % 1;
       const brightness =
         baseBrightness -
-        0.5 * Math.sin(shadowThetaOffset + heading + th) * distance;
+        0.5 *
+          (shadowDepthOffset +
+            Math.sin(shadowThetaOffset + heading + th) * distance);
       p.fill(hue, baseSaturation, brightness);
       p.stroke(hue, baseSaturation, brightness);
       p.triangle(pts[0], pts[1], pts[2], pts[3], pts[4], pts[5]);
