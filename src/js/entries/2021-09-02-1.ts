@@ -1,11 +1,14 @@
 import { MyP5 } from "../types";
-// import { hashContains } from "../helpers.js";
 
 import random from "random";
-import p5 from "p5";
 import Delaunator from "delaunator";
+// import "p5.createloop";
 
-const numPoints = random.int(30, 90);
+const numPoints = random.int(10, 70);
+const baseHue = random.float();
+const hueRange = random.float(0.2, 0.8);
+const baseSaturation = random.float(0.1, 0.8);
+const baseBrightness = 0.6;
 
 function randomPoints(
   num: number,
@@ -28,43 +31,64 @@ function randomPointsRadial(num: number, maxRadius: number) {
     const r = random.float(0, maxRadius);
     ret[i] = [r * Math.sin(th), r * Math.cos(th)];
   }
-  return ret.flat();
+  return ret;
 }
 
 let sketch = (p: MyP5) => {
-  let delaunator: Delaunator<Float64Array>;
+  let delaunator: Delaunator<[number, number]>;
   p.setup = () => {
     p.createCanvas(p.currentWidth(), p.currentWidth());
     p.frameRate(30);
     p.background(10);
-    p.stroke(255, 255, 255, 20);
     p.colorMode(p.HSB, 1);
-    const hue = random.float();
-    const saturation = random.float();
 
-    p.fill(hue, saturation, 0.5, 0.1);
-    let coords = randomPointsRadial(numPoints, p.width / 2 - 10);
-    delaunator = new Delaunator(coords);
+    p.stroke(baseHue, baseSaturation, baseBrightness - 0.1);
+    p.fill(baseHue, baseSaturation, baseBrightness);
+    let coords = randomPointsRadial(numPoints, p.width / 2 - 20);
+    delaunator = Delaunator.from(coords);
+
+    const gif = {
+      startLoop: 1,
+      endLoop: 2,
+      fileName: "tyvek",
+      options: {
+        width: 200,
+        height: 200,
+      },
+    };
+    p.createLoop({ gif });
   };
+
   p.draw = () => {
-    p.background(0);
-    let coords = delaunator.coords as Float64Array;
-    for (let i = 0; i < coords.length; i++) {
+    p.background(0, 0, 0.1, 1);
+    let coords = new Array<[number, number]>();
+    for (let i = 0; i < delaunator.coords.length; i += 2) {
+      let c: [number, number] = [
+        delaunator.coords[i],
+        delaunator.coords[i + 1],
+      ];
       if (random.int(1, 100) < 10) {
-        coords[i] += random.float(0, 2) - 1;
       }
+      coords.push(c);
     }
+    delaunator = Delaunator.from(coords);
 
     p.translate(p.width / 2, p.height / 2);
-    console.log(coords);
+
     for (let i = 0; i < delaunator.triangles.length; i += 3) {
+      const hue =
+        (1 +
+          baseHue +
+          Math.sin(i / delaunator.triangles.length + p.animLoop.theta)) %
+        1;
+      p.fill(hue, baseSaturation, baseBrightness);
       p.triangle(
-        coords[delaunator.triangles[i]],
-        coords[delaunator.triangles[i] + 1],
-        coords[delaunator.triangles[i + 1] + 0],
-        coords[delaunator.triangles[i + 1] + 1],
-        coords[delaunator.triangles[i + 2] + 0],
-        coords[delaunator.triangles[i + 2 + 1]]
+        coords[delaunator.triangles[i]][0],
+        coords[delaunator.triangles[i]][1],
+        coords[delaunator.triangles[i + 1]][0],
+        coords[delaunator.triangles[i + 1]][1],
+        coords[delaunator.triangles[i + 2]][0],
+        coords[delaunator.triangles[i + 2]][1]
       );
     }
   };
