@@ -5,10 +5,10 @@ import Delaunator from "delaunator";
 
 const numPoints = random.int(20, 50);
 const baseHue = random.float();
-const hueRange = random.float(0.1, 0.4);
+const hueRange = random.float(0.1, 0.3);
 const baseSaturation = random.float(0.1, 0.5);
 const baseBrightness = 0.5;
-const shadowThetaOffset = random.float(Math.PI / -8, Math.PI / 8);
+const shadowThetaOffset = random.float(0, Math.PI * 2);
 const rotationDuration = random.int(10, 30);
 const rotationDirection = random.bool() ? 1 : -1;
 
@@ -38,6 +38,11 @@ function randomPointsRadial(num: number, maxRadius: number) {
 
 let sketch = (p: MyP5) => {
   let delaunator: Delaunator<[number, number]>;
+
+  function radius() {
+    return p.width / 2 - 20;
+  }
+
   p.setup = () => {
     p.createCanvas(p.currentWidth(), p.currentWidth());
     p.createDiv("(randomly seeded; refresh to regenerate)");
@@ -45,9 +50,8 @@ let sketch = (p: MyP5) => {
     p.background(10);
     p.colorMode(p.HSB, 1);
 
-    p.stroke(baseHue, baseSaturation, baseBrightness - 0.05);
     p.fill(baseHue, baseSaturation, baseBrightness);
-    let coords = randomPointsRadial(numPoints, p.width / 2 - 20);
+    let coords = randomPointsRadial(numPoints, radius());
     delaunator = Delaunator.from(coords);
 
     const gif = {
@@ -63,6 +67,8 @@ let sketch = (p: MyP5) => {
   };
 
   p.draw = () => {
+    p.strokeCap(p.SQUARE);
+    p.strokeWeight(0.3);
     p.background(0, 0, 0, 1);
     let coords = new Array<[number, number]>();
     for (let i = 0; i < delaunator.coords.length; i += 2) {
@@ -108,10 +114,13 @@ let sketch = (p: MyP5) => {
 
       const v = p.createVector(center[0], center[1]);
       const heading = v.heading();
+      const distance = v.mag() / radius();
+      console.log(distance);
       const pts = [pt1, pt2, pt3].flat();
       const hue = (1 + baseHue + hueRange * Math.sin(heading)) % 1;
       const brightness =
-        baseBrightness - 0.4 * Math.sin(shadowThetaOffset + heading + th);
+        baseBrightness -
+        0.5 * Math.sin(shadowThetaOffset + heading + th) * distance;
       p.fill(hue, baseSaturation, brightness);
       p.stroke(hue, baseSaturation, brightness);
       p.triangle(pts[0], pts[1], pts[2], pts[3], pts[4], pts[5]);
