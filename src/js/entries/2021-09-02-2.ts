@@ -2,8 +2,6 @@ import { MyP5 } from "../types";
 
 import random from "random";
 import Delaunator from "delaunator";
-import { Vector } from "p5";
-import { throws } from "assert";
 
 const numPoints = random.int(20, 50);
 const baseHue = random.float();
