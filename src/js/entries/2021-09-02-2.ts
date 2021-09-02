@@ -5,13 +5,14 @@ import Delaunator from "delaunator";
 import { Vector } from "p5";
 import { throws } from "assert";
 
-const numPoints = random.int(20, 90);
+const numPoints = random.int(20, 50);
 const baseHue = random.float();
 const hueRange = random.float(0.1, 0.4);
 const baseSaturation = random.float(0.1, 0.5);
-const baseBrightness = 0.6;
+const baseBrightness = 0.5;
 const shadowThetaOffset = random.float(Math.PI / -8, Math.PI / 8);
-const rotationDuration = random.int(10, 20);
+const rotationDuration = random.int(10, 30);
+const rotationDirection = random.bool() ? 1 : -1;
 
 function randomPoints(
   num: number,
@@ -64,7 +65,7 @@ let sketch = (p: MyP5) => {
   };
 
   p.draw = () => {
-    p.background(0, 0, 0.1, 1);
+    p.background(0, 0, 0, 1);
     let coords = new Array<[number, number]>();
     for (let i = 0; i < delaunator.coords.length; i += 2) {
       let c: [number, number] = [
@@ -79,7 +80,8 @@ let sketch = (p: MyP5) => {
 
     p.translate(p.width / 2, p.height / 2);
     const th =
-      (p.animLoop.theta + Math.PI * 2 * p.animLoop.elapsedLoops) /
+      (rotationDirection *
+        (p.animLoop.theta + Math.PI * 2 * p.animLoop.elapsedLoops)) /
       rotationDuration;
     p.rotate(th);
 
@@ -117,7 +119,7 @@ let sketch = (p: MyP5) => {
         // 0.04 * Math.sin(p.animLoop.theta)) %
         1;
       const brightness =
-        baseBrightness - 0.3 * Math.sin(shadowThetaOffset + heading + th);
+        baseBrightness - 0.4 * Math.sin(shadowThetaOffset + heading + th);
       p.fill(hue, baseSaturation, brightness);
       p.stroke(hue, baseSaturation, brightness);
       p.triangle(pts[0], pts[1], pts[2], pts[3], pts[4], pts[5]);
