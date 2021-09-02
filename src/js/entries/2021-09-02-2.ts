@@ -3,13 +3,15 @@ import { MyP5 } from "../types";
 import random from "random";
 import Delaunator from "delaunator";
 import { Vector } from "p5";
-// import "p5.createloop";
+import { throws } from "assert";
 
-const numPoints = random.int(10, 70);
+const numPoints = random.int(20, 90);
 const baseHue = random.float();
-const hueRange = random.float(0.2, 0.8);
-const baseSaturation = random.float(0.1, 0.7);
+const hueRange = random.float(0.1, 0.4);
+const baseSaturation = random.float(0.1, 0.5);
 const baseBrightness = 0.6;
+const shadowThetaOffset = random.float(Math.PI / -8, Math.PI / 8);
+const rotationDuration = random.int(10, 20);
 
 function randomPoints(
   num: number,
@@ -51,8 +53,8 @@ let sketch = (p: MyP5) => {
 
     const gif = {
       startLoop: 1,
-      endLoop: 3,
-      fileName: "tyvek",
+      endLoop: 1 + rotationDuration,
+      fileName: "arch",
       options: {
         width: 200,
         height: 200,
@@ -76,6 +78,10 @@ let sketch = (p: MyP5) => {
     delaunator = Delaunator.from(coords);
 
     p.translate(p.width / 2, p.height / 2);
+    const th =
+      (p.animLoop.theta + Math.PI * 2 * p.animLoop.elapsedLoops) /
+      rotationDuration;
+    p.rotate(th);
 
     const numTriangles = delaunator.triangles.length / 3;
 
@@ -107,16 +113,11 @@ let sketch = (p: MyP5) => {
         (1 +
           baseHue +
           // (0.1 * i) / delaunator.triangles.length +
-          0.2 * Math.sin(heading)) %
+          hueRange * Math.sin(heading)) %
         // 0.04 * Math.sin(p.animLoop.theta)) %
         1;
-      const brightness = baseBrightness - 0.3 * Math.sin(heading);
-      // const hue =
-      //   (1 +
-      //     baseHue +
-      //     (0.1 * i) / delaunator.triangles.length +
-      //     0.2 * Math.sin(p.animLoop.theta)) %
-      //   1;
+      const brightness =
+        baseBrightness - 0.3 * Math.sin(shadowThetaOffset + heading + th);
       p.fill(hue, baseSaturation, brightness);
       p.stroke(hue, baseSaturation, brightness);
       p.triangle(pts[0], pts[1], pts[2], pts[3], pts[4], pts[5]);
