@@ -30,7 +30,7 @@ function randomPointsRadial(num: number, maxRadius: number) {
   let ret = new Array<[number, number]>(num);
   for (let i = 0; i < num; i += 1) {
     const th = random.float(0, Math.PI * 2);
-    const r = random.float(0, maxRadius);
+    const r = maxRadius * Math.pow(random.float(0, 1), 0.4);
     ret[i] = [r * Math.sin(th), r * Math.cos(th)];
   }
   return ret;
@@ -109,13 +109,7 @@ let sketch = (p: MyP5) => {
       const v = p.createVector(center[0], center[1]);
       const heading = v.heading();
       const pts = [pt1, pt2, pt3].flat();
-      const hue =
-        (1 +
-          baseHue +
-          // (0.1 * i) / delaunator.triangles.length +
-          hueRange * Math.sin(heading)) %
-        // 0.04 * Math.sin(p.animLoop.theta)) %
-        1;
+      const hue = (1 + baseHue + hueRange * Math.sin(heading)) % 1;
       const brightness =
         baseBrightness - 0.4 * Math.sin(shadowThetaOffset + heading + th);
       p.fill(hue, baseSaturation, brightness);
