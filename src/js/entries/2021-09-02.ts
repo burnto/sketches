@@ -5,7 +5,7 @@ import random from "random";
 import p5 from "p5";
 import Delaunator from "delaunator";
 
-const numPoints = 10;
+const numPoints = 30;
 
 function randomPoints(
   num: number,
@@ -34,13 +34,14 @@ function randomPointsRadial(num: number, maxRadius: number) {
 let sketch = (p: MyP5) => {
   p.setup = () => {
     p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.frameRate(3);
+    p.fill(255, 255, 255, 200);
   };
   p.draw = () => {
     let coords = randomPointsRadial(numPoints, p.width / 2 - 10);
     p.translate(p.width / 2, p.height / 2);
     console.log(coords);
     const d = Delaunator.from(coords);
-    // console.log(d.triangles);
     const triangleCoords = new Array();
     for (let i = 0; i < d.triangles.length; i += 3) {
       p.triangle(
