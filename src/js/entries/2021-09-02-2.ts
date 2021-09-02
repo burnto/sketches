@@ -17,6 +17,7 @@ const shadowThetaOffset = random.float(0, Math.PI * 2);
 const shadowDepthOffset = random.float(-0.2, 0.2);
 const rotationDuration = random.int(10, 30);
 const rotationDirection = random.bool() ? 1 : -1;
+const radiusScale = random.float(0.45, 0.1);
 
 function randomPoints(
   num: number,
@@ -46,7 +47,7 @@ let sketch = (p: MyP5) => {
   let delaunator: Delaunator<[number, number]>;
 
   function radius() {
-    return p.width / 2 - 20;
+    return p.width * radiusScale;
   }
 
   p.setup = () => {
