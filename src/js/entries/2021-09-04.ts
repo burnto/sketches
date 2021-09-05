@@ -20,8 +20,8 @@ let sketch = (p: MyP5) => {
   };
 
   p.colorMode(p.HSB, 1, 1, 1, 1);
-  const startColor = p.color(1, 0.5, 1, 1);
-  const endColor = p.color(0.5, 0.5, 1, 1);
+  const startColor = p.color(1, 0.5, 0.8, 1);
+  const endColor = p.color(0, 0.5, 1, 1);
 
   p.setup = () => {
     p.createCanvas(p.currentWidth(), p.currentWidth(), p.WEBGL);
@@ -52,22 +52,32 @@ let sketch = (p: MyP5) => {
     p.rotateY(p.animLoop.theta);
     p.rotateZ(p.animLoop.theta);
     p.background(0);
-    const numCoords = Math.sin(p.animLoop.theta) * 200;
-    let coords = fibSphere(300 + numCoords);
+    const numCoords = Math.sin(p.animLoop.theta) * 100;
+    let coords = fibSphere(120 + numCoords);
     p.scale(120);
-    p.beginShape();
+    let lastPt: p5.Vector | undefined;
     for (let i = 0; i < coords.length; i++) {
-      const c = p.lerpColor(
-        startColor,
-        endColor,
-        0.5 + Math.cos(p.radians(i * 1) + p.animLoop.theta) / 4
-      );
-      p.stroke(c);
-      let v = coords[i];
-      p.point(v.x, v.y, v.z);
-      p.vertex(v.x, v.y, v.z);
+      let newPt = coords[i];
+
+      if (lastPt) {
+        // const c = p.lerpColor(
+        //   startColor,
+        //   endColor,
+        //   0.5 + Math.cos(p.radians(i * 2) + p.animLoop.theta) / 4
+        // );
+        const c = p.color(
+          0.5 + Math.sin(p.radians(i) + p.animLoop.theta) / 4,
+          0.5,
+          1,
+          1
+        );
+        p.stroke(c);
+        if (lastPt) {
+          p.line(lastPt.x, lastPt.y, lastPt.z, newPt.x, newPt.y, newPt.z);
+        }
+      }
+      lastPt = newPt;
     }
-    p.endShape();
   };
 };
 
