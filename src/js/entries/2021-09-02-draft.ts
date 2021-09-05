@@ -1,10 +1,5 @@
 import { MyP5 } from "../types";
 
-import random from "random";
-import Delaunator from "delaunator";
-import { Vector } from "p5";
-import { rootCertificates } from "tls";
-
 const rotationDuration = 5;
 const numPoints = 120;
 const stemAngle = 0.03 * Math.PI;
