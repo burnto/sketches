@@ -3,9 +3,7 @@ import p5 from "p5";
 import { initLoop, randomChoice, randomInt, Rect } from "../helpers";
 import { randomColor, palettes } from "../palettes";
 
-const FIB = [3, 5, 8, 13, 21, 34, 55];
-const MAX_LINES = 21;
-const MIN_LINES = 3;
+const FIB = [3, 5, 8, 13, 21, 34];
 
 const palette = randomChoice(palettes);
 
@@ -62,7 +60,7 @@ class Item {
       const saturation = p.saturation(line.color);
       const hue = p.hue(line.color);
 
-      const darkerLightness = lightness * (0.9 + (0.1 * i) / this.lines.length);
+      const darkerLightness = lightness * (0.8 + (0.3 * i) / this.lines.length);
 
       p.fill(hue, saturation, darkerLightness);
       p.rect(0, -line.width / 2, this.size, line.width);
