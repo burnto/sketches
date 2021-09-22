@@ -3,6 +3,13 @@ const path = require('path');
 const crypto = require('crypto');
 const randy = require('randy');
 const Sentencer = require('sentencer');
+const nouns = require('sentencer/words/nouns');
+
+console.log(nouns);
+
+Sentencer.configure({
+  nounList: nouns.filter(n => n !== "japanese")
+})
 
 function generateTitle(filename) {
   var md5sum = crypto.createHash('md5').update(filename).digest('binary');
