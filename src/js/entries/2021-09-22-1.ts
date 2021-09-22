@@ -44,6 +44,7 @@ const sketch = (p: MyP5) => {
   p.setup = () => {
     // Basic setup
     p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createDiv("(randomly seeded; refresh to regenerate)");
     p.frameRate(frameRate);
     p.noFill();
 

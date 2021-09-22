@@ -109,6 +109,7 @@ const sketch = (p: MyP5) => {
 
   p.setup = () => {
     p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createDiv("(randomly seeded; refresh to regenerate)");
     p.frameRate(30);
     p.noStroke();
     initLoop(p, { duration: 4 });

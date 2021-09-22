@@ -100,6 +100,7 @@ const sketch = (p: MyP5) => {
     p.createCanvas(p.currentWidth(), p.currentWidth());
     p.frameRate(30);
     p.noFill();
+    p.createDiv("(randomly seeded; refresh to regenerate)");
 
     // Set up models
     for (let i = 0; i < numDisturbances; i++) {
