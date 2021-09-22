@@ -6,3 +6,8 @@ interface MyP5 extends p5 {
   createLoop(any: any);
   animLoop: any;
 }
+
+
+interface FuncP5 extends MyP5 {
+  Ease: any;
+}

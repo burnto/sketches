@@ -38,6 +38,13 @@
  *  Robert Bristow-Johnson's Audio EQ Cookbook: http://www.musicdsp.org/files/Audio-EQ-Cookbook.txt
  *  Corban Brook's dsp.js: https://github.com/corbanbrook/dsp.js/
  */
+
+const sin = Math.sin;
+const cos = Math.cos;
+const HALF_PI = Math.PI / 2;
+const pow = Math.pow;
+const sqrt = Math.sqrt;
+
 export default function (p5) {
 
   // =============================================================================

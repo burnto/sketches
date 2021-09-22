@@ -1,9 +1,18 @@
 import { MyP5 } from "../types";
-import p5 from "p5";
+import P5 from "p5";
 import { initLoop, randomChoice, randomInt, Rect } from "../helpers";
 import { randomColor, palettes } from "../palettes";
+import { FuncP5 } from "../types";
 
+// @ts-ignore
+import Func from "../func";
 
+Func(P5);
+const p5 = P5 as unknown as FuncP5;
+
+console.log(p5.Ease);
+
+const EASE_OPTIONS = ["exponentialInOut", "circularOut", "linear"];
 const FIB = [3, 5, 8, 13, 21, 34];
 
 const palette = randomChoice(palettes);
@@ -15,23 +24,37 @@ enum Orientation {
 
 class Line {
   readonly orientation: Orientation;
-  readonly initialTheta: number;
-  public offset: number;
+  readonly initialOffset: number;
+  public offset: number = 0;
   readonly width: number;
-  readonly color: p5.Color;
+  readonly color: P5.Color;
+  readonly ease = new p5.Ease()[randomChoice(EASE_OPTIONS)];
 
   constructor(p: MyP5) {
     this.orientation = randomChoice([
       Orientation.Horizontal,
       Orientation.Vertical,
     ]);
-    this.initialTheta = Math.random() * Math.PI * 2;
-    this.offset = Math.sin(this.initialTheta + p.animLoop.theta);
+    this.initialOffset = Math.random();
+    this.offset = this.offsetFor(this.initialOffset);
     this.width = randomChoice(FIB);
     this.color = p.color(randomColor(palette));
   }
+
+  offsetFor(t: number) {
+    const result = this.ease(t);
+    return result;
+  }
+
   tick(p: MyP5) {
-    this.offset = Math.sin(this.initialTheta + p.animLoop.theta) / 2 + 0.5;
+    let progress = (this.initialOffset + p.animLoop.progress) % 1;
+    let t;
+    if (progress < 0.5) {
+      t = progress * 2;
+    } else {
+      t = 1 - (progress - 0.5) * 2;
+    }
+    this.offset = this.offsetFor(t);
   }
 }
 
@@ -42,7 +65,7 @@ class Item {
   constructor(p: MyP5, readonly size: number) {
     this.lines = [];
 
-    const numParts = randomChoice(FIB) * 30;
+    const numParts = randomChoice(FIB);
     for (let i = 0; i < numParts; i++) {
       this.lines.push(new Line(p));
     }

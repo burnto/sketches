@@ -65,5 +65,5 @@ export function randomPalette() {
 }
 
 export function randomColor(p: Palette) {
-  return randomChoice([p.bg, p.c1, p.c2, p.c3]);
+  return randomChoice([p.c1, p.c2, p.c3]);
 }

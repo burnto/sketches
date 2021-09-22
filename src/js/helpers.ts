@@ -41,7 +41,7 @@ export function initLoop(
   };
   Object.assign(gif, gifOpts);
 
-  const loopOpts = Object.assign({}, { gif, duration: 10 });
+  const loopOpts = Object.assign({}, { gif, duration: 20 });
   p.createLoop(loopOpts);
   p.animLoop.noiseFrequency(0.1);
 }
