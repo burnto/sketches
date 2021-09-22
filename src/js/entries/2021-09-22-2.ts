@@ -3,7 +3,7 @@ import p5 from "p5";
 import { initLoop, randomChoice, randomInt, Rect } from "../helpers";
 import { randomColor, palettes } from "../palettes";
 
-const FIB = [3, 5, 8, 13, 21, 34];
+const FIB = [3, 5, 8, 13, 21, 34, 55];
 const MAX_LINES = 21;
 const MIN_LINES = 3;
 
@@ -46,6 +46,7 @@ class Item {
 
   public draw(p: MyP5) {
     // p.circle(0, 0, 5);
+    p.colorMode(p.HSL);
     p.rotate(this.rotationOffset);
     this.lines.forEach((line, i) => {
       p.push();
@@ -57,7 +58,13 @@ class Item {
         -this.size / 2 + line.offset * (this.size - FIB.slice(-1)[0]),
         0
       );
-      p.fill(line.color);
+      const lightness = p.lightness(line.color);
+      const saturation = p.saturation(line.color);
+      const hue = p.hue(line.color);
+
+      const darkerLightness = lightness * (0.9 + (0.1 * i) / this.lines.length);
+
+      p.fill(hue, saturation, darkerLightness);
       p.rect(0, -line.width / 2, this.size, line.width);
       p.pop();
     });
