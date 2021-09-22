@@ -1,5 +1,6 @@
 import { MyP5 } from "../types";
 import p5, { Vector } from "p5";
+import { Mover, Rect } from "../helpers";
 
 const duration = 5;
 const fps = 30;
@@ -28,65 +29,6 @@ const maxGravity = 100;
 const numDisturbances = 40;
 const padding = 50;
 const frameRate = 30;
-
-class Rect {
-  constructor(
-    public minX: number,
-    public minY: number,
-    public maxX: number,
-    public maxY: number
-  ) {
-    if (minX > maxX || minY > maxY) {
-      throw "positive rects only";
-    }
-  }
-
-  get width() {
-    return this.maxX - this.minX;
-  }
-
-  get height() {
-    return this.maxY - this.minY;
-  }
-
-  inBounds(x: number, y: number): boolean {
-    return x >= this.minX && x <= this.maxX && y >= this.minY && y <= this.maxY;
-  }
-}
-
-class Mover {
-  private _coord: p5.Vector;
-  private _vector: p5.Vector;
-  constructor(coord: p5.Vector, vector: p5.Vector) {
-    this._coord = coord;
-    this._vector = vector;
-  }
-
-  public get coord() {
-    return this._coord;
-  }
-
-  public get vector() {
-    return this._vector;
-  }
-
-  // todo - use delta time elapsed instead of frame ticks
-  tick(bounds: Rect) {
-    this._coord.add(this._vector);
-
-    if (this._coord.x < bounds.minX) {
-      this._coord.x += bounds.width;
-    } else if (this._coord.x > bounds.maxX) {
-      this._coord.x -= bounds.width;
-    }
-
-    if (this._coord.y < bounds.minY) {
-      this._coord.y += bounds.height;
-    } else if (this._coord.y > bounds.maxY) {
-      this._coord.y -= bounds.height;
-    }
-  }
-}
 
 class Disturbance extends Mover {
   constructor(coord: p5.Vector, vector: p5.Vector, readonly radius: number) {
