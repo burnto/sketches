@@ -5,8 +5,6 @@ const randy = require('randy');
 const Sentencer = require('sentencer');
 const nouns = require('sentencer/words/nouns');
 
-console.log(nouns);
-
 Sentencer.configure({
   nounList: nouns.filter(n => n !== "japanese")
 })

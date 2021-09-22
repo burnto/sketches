@@ -25,7 +25,11 @@ interface CreateLoopGifOpts {
   open?: boolean;
 }
 
-export function initLoop(p: MyP5, gifOpts: CreateLoopGifOpts = {}) {
+export function initLoop(
+  p: MyP5,
+  opts: any = {},
+  gifOpts: CreateLoopGifOpts = {}
+) {
   let gif: CreateLoopGifOpts = {
     render: hashContains("render"),
     options: { quality: 5 },
@@ -37,7 +41,7 @@ export function initLoop(p: MyP5, gifOpts: CreateLoopGifOpts = {}) {
   };
   Object.assign(gif, gifOpts);
 
-  const loopOpts = Object.assign({}, { gif });
+  const loopOpts = Object.assign({}, { gif, duration: 10 });
   p.createLoop(loopOpts);
   p.animLoop.noiseFrequency(0.1);
 }

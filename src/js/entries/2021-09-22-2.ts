@@ -3,6 +3,7 @@ import p5 from "p5";
 import { initLoop, randomChoice, randomInt, Rect } from "../helpers";
 import { randomColor, palettes } from "../palettes";
 
+
 const FIB = [3, 5, 8, 13, 21, 34];
 
 const palette = randomChoice(palettes);
@@ -14,7 +15,8 @@ enum Orientation {
 
 class Line {
   readonly orientation: Orientation;
-  readonly offset: number;
+  readonly initialTheta: number;
+  public offset: number;
   readonly width: number;
   readonly color: p5.Color;
 
@@ -23,27 +25,30 @@ class Line {
       Orientation.Horizontal,
       Orientation.Vertical,
     ]);
-    this.offset = randomChoice(FIB) / FIB.slice(-1)[0];
+    this.initialTheta = Math.random() * Math.PI * 2;
+    this.offset = Math.sin(this.initialTheta + p.animLoop.theta);
     this.width = randomChoice(FIB);
     this.color = p.color(randomColor(palette));
+  }
+  tick(p: MyP5) {
+    this.offset = Math.sin(this.initialTheta + p.animLoop.theta) / 2 + 0.5;
   }
 }
 
 class Item {
   lines: Array<Line>;
-  rotationOffset = Math.PI * 2 * Math.random();
+  rotationOffset = ((randomInt(0, 24) * 15) / 180) * Math.PI;
 
   constructor(p: MyP5, readonly size: number) {
     this.lines = [];
 
-    const numParts = randomChoice(FIB);
+    const numParts = randomChoice(FIB) * 30;
     for (let i = 0; i < numParts; i++) {
       this.lines.push(new Line(p));
     }
   }
 
   public draw(p: MyP5) {
-    // p.circle(0, 0, 5);
     p.colorMode(p.HSL);
     p.rotate(this.rotationOffset);
     this.lines.forEach((line, i) => {
@@ -60,15 +65,20 @@ class Item {
       const saturation = p.saturation(line.color);
       const hue = p.hue(line.color);
 
-      const darkerLightness = lightness * (0.8 + (0.3 * i) / this.lines.length);
+      const darkerLightness = lightness; // * (0.8 + (0.3 * i) / this.lines.length);
 
       p.fill(hue, saturation, darkerLightness);
+      if (line.color.toString() === p.color(palette.bg).toString()) {
+        p.scale(1.2);
+      }
       p.rect(0, -line.width / 2, this.size, line.width);
       p.pop();
     });
   }
 
-  public tick(p: MyP5) {}
+  public tick(p: MyP5) {
+    this.lines.forEach((line, i) => line.tick(p));
+  }
 }
 
 const sketch = (p: MyP5) => {
@@ -78,7 +88,7 @@ const sketch = (p: MyP5) => {
     p.createCanvas(p.currentWidth(), p.currentWidth());
     p.frameRate(30);
     p.noStroke();
-    initLoop(p);
+    initLoop(p, { duration: 4 });
     items.push(new Item(p, p.width * 0.6));
   };
 
