@@ -28,7 +28,7 @@
     "@types/delaunator": "^3.0.0",
     "chance.js": "^0.0.1",
     "delaunator": "^5.0.0",
-    "p5": "^0.8.0",
+    "p5": "^1.4.0",
     "p5.createloop": "^0.2.8",
     "random": "^3.0.6",
     "randy": "^1.5.1",
