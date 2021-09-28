@@ -100,7 +100,6 @@ class PatternMaker {
 
 const sketch = (p: MyP5) => {
   let shapes: PatternedShape[] = [];
-  let debugInput: p5.Element;
   p.setup = () => {
     p.createCanvas(p.currentWidth(), p.currentWidth());
     p.noStroke();
@@ -109,11 +108,9 @@ const sketch = (p: MyP5) => {
     for (let i = 0; i < 1; i++) {
       shapes.push(new PatternedShape(p));
     }
-    debugInput = p.createDiv();
   };
 
   p.draw = () => {
-    debugInput.html(`${Math.round(p.frameRate())}`);
     p.background(0);
     let progress = (p.frameCount / 1000) % 1;
     let sqWidth = p.width / Math.sqrt(shapes.length);
