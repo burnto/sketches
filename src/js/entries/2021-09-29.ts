@@ -81,6 +81,7 @@ class RecursiveSegment {
 
   private patternMaker: PatternMaker;
   private pattern: CanvasPattern;
+  private color: p5.Color;
   constructor(
     protected p: p5,
     protected width: number,
@@ -111,6 +112,7 @@ class RecursiveSegment {
     }
     this.patternMaker = new PatternMaker(p, randomInt(2, 10));
     this.pattern = this.patternMaker.canvasPattern(1);
+    this.color = p.color(randomChoice(palette.colors));
   }
 
   draw(p: p5, x: number, y: number, w: number, h: number) {
@@ -142,15 +144,10 @@ class RecursiveSegment {
       drawingCtx.globalCompositeOperation = "multiply";
       this.p.push();
       p.rect(x, y, w, h);
-      p.fill(randomChoice(palette.colors));
+      p.fill(this.color);
       p.rect(x, y, w, h);
       this.p.pop();
       drawingCtx.restore();
-
-      // this.patternMaker.canvasPattern
-      // this.patternedShape.withPattern(1, () => {
-      //   p.rect(x, y, w, h);
-      // });
     }
   }
 }
@@ -158,28 +155,36 @@ class RecursiveSegment {
 const sketch = (p: MyP5) => {
   let numPerSide: number;
 
-  let segments: RecursiveSegment[] = [];
+  let segment: RecursiveSegment;
+
+  const render = (p: p5) => {
+    p.push();
+    p.background(
+      p.lerpColor(
+        p.color(palette.colors[palette.colors.length - 1]),
+        p.color(255),
+        0.7
+      )
+    );
+    const padding = p.width / 10;
+    p.translate(padding, padding);
+    segment.draw(p, 0, 0, p.width - padding * 2, p.height - padding * 2);
+    p.pop();
+  };
+
   p.setup = () => {
     p.createCanvas(p.currentWidth(), p.currentWidth());
     p.noStroke();
     p.frameRate(30);
 
-    let segment = new RecursiveSegment(
-      p,
-      30,
-      200,
-      Orientation.Horizontal,
-      depth
-    );
-
-    p.background(0);
-    p.push();
-    p.translate(0, 0);
-    segment.draw(p, 0, 0, p.width, p.height);
-    p.pop();
+    segment = new RecursiveSegment(p, 30, 200, Orientation.Horizontal, depth);
   };
 
-  p.draw = () => {};
+  p.windowResized = () => {};
+
+  p.draw = () => {
+    render(p);
+  };
 };
 
 export default sketch;
