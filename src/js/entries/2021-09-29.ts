@@ -156,7 +156,6 @@ class RecursiveSegment {
 }
 
 const sketch = (p: MyP5) => {
-  let shapes: PatternedShape[] = [];
   let numPerSide: number;
 
   let segments: RecursiveSegment[] = [];
