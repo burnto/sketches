@@ -2632,10 +2632,10 @@ export default function (p5) {
     for (var i = 0; i < this.l1; i++) {
       if (multi) {
         for (e = 0; e < _evalstr.length; e++) {
-          _dest[i][e] = eval('with(this) { ' + _evalstr[e] + ' }');
+          _dest[i][e] = (0, eval)('with(this) { ' + _evalstr[e] + ' }');
         }
       }
-      else _dest[i] = eval('with(this) { ' + _evalstr + ' }');
+      else _dest[i] = (0, eval)('with(this) { ' + _evalstr + ' }');
     }
     return (_dest);
   }
@@ -2694,10 +2694,10 @@ export default function (p5) {
       for (var j = 0; j < this.l2; j++) {
         if (multi) {
           for (e = 0; e < _evalstr.length; e++) {
-            _dest[i][j][e] = eval('with(this) { ' + _evalstr[e] + ' }');
+            _dest[i][j][e] = (0, eval)('with(this) { ' + _evalstr[e] + ' }');
           }
         }
-        else _dest[i][j] = eval('with(this) { ' + _evalstr + ' }');
+        else _dest[i][j] = (0, eval)('with(this) { ' + _evalstr + ' }');
       }
     }
     return (_dest);
@@ -2766,10 +2766,10 @@ export default function (p5) {
         for (var k = 0; k < this.l3; k++) {
           if (multi) {
             for (e = 0; e < _evalstr.length; e++) {
-              _dest[i][j][k][e] = eval('with(this) { ' + _evalstr[e] + ' }');
+              _dest[i][j][k][e] = (0, eval)('with(this) { ' + _evalstr[e] + ' }');
             }
           }
-          else _dest[i][j][k] = eval('with(this) { ' + _evalstr + ' }');
+          else _dest[i][j][k] = (0, eval)('with(this) { ' + _evalstr + ' }');
         }
       }
     }
