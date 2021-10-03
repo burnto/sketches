@@ -143,8 +143,8 @@ class RecursiveSegment {
         p.fill(255, 0, 255);
       }
       let drawingCtx = this.p.drawingContext as CanvasRenderingContext2D;
-      drawingCtx.shadowColor = "black";
-      drawingCtx.shadowBlur = 30; //Math.random();
+      drawingCtx.shadowColor = "#000000cc";
+      drawingCtx.shadowBlur = 25; //Math.random();
       p.fill(this.color);
       p.rect(x, y, w, h);
       drawingCtx.save();
