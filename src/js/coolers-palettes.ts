@@ -44,5 +44,5 @@ export function p5Colors(palette: Palette): p5.Color[] {
 }
 
 export function randomColor(palette: Palette): string {
-  return randomChoice(colors(palette));
+  return randomChoice(paletteColors(palette));
 }
