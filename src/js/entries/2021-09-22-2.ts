@@ -3,11 +3,11 @@ import P5 from "p5";
 import { initLoop, randomChoice, randomInt, Rect } from "../helpers";
 import { randomColor, palettes } from "../palettes";
 import { FuncP5 } from "../types";
+import func from "p5.js-func";
 
 // @ts-ignore
-import Func from "../func";
 
-Func(P5);
+func(P5);
 const p5 = P5 as unknown as FuncP5;
 
 console.log(p5.Ease);

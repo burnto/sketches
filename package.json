@@ -5,10 +5,10 @@
   "scripts": {
     "start": "npm-run-all --parallel dev:*",
     "dev:eleventy": "eleventy --serve",
-    "dev:js": "esbuild --watch src/js/entries/* src/js/load.js src/js/func.js src/js/helpers.ts  --format=esm --bundle --outdir=_site --outbase=src/js  --sourcemap --minify",
+    "dev:js": "esbuild --watch src/js/entries/* src/js/load.js src/js/helpers.ts  --format=esm --bundle --outdir=_site --outbase=src/js  --sourcemap --minify",
     "dev:tsc": "tsc -noEmit",
     "prod:eleventy": "eleventy",
-    "prod:js": "tsc -noEmit && esbuild src/js/entries/* src/js/load.js src/js/func.js src/js/helpers.ts --format=esm --bundle --outdir=_site --outbase=src/js --minify",
+    "prod:js": "tsc -noEmit && esbuild src/js/entries/* src/js/load.js src/js/helpers.ts --format=esm --bundle --outdir=_site --outbase=src/js --minify",
     "build": "run-s prod:*",
     "clean": "rm -rf _site .cache"
   },
@@ -30,6 +30,7 @@
     "delaunator": "^5.0.0",
     "p5": "^1.4.0",
     "p5.createloop": "^0.2.8",
+    "p5.js-func": "github:burnto/p5.js-func",
     "random": "^3.0.6",
     "randy": "^1.5.1",
     "sentencer": "^0.2.1"
