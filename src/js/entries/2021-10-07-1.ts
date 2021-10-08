@@ -4,9 +4,9 @@ import { p5Colors, paletteColors, Palettes } from "../coolers-palettes";
 
 let sketch = (p: MyP5) => {
   const padding = 0;
-  const iters = 40;
+  const iters = 30;
   const frameRate = 30;
-  const strokeWeight = 1;
+  const strokeWeight = 1.7;
 
   const palette = Palettes.get("regal")!;
   const colors = paletteColors(palette);
@@ -41,7 +41,6 @@ let sketch = (p: MyP5) => {
 
     // p.animLoop.noiseFrequency(0.4);
     p.background(0);
-    p.strokeWeight(1);
   };
 
   p.draw = () => {
@@ -62,7 +61,12 @@ let sketch = (p: MyP5) => {
           p.animLoop.theta +
           (Math.PI * x) / w +
           (Math.PI * i) / iters;
-        p.circle(x, p.height / 2 + (h / 2) * Math.sin(theta), 10);
+        // p.square(x, p.height / 2 + (h / 2) * Math.sin(theta), 5);
+        let y = p.height / 2 + (h / 2) * Math.sin(theta);
+        let v = p.createVector(20, 0);
+        v.rotate(-theta);
+        v.add(x, y);
+        p.line(x, y, v.x, v.y);
       }
     }
     for (let i = 0; i < iters; i++) {
@@ -73,8 +77,12 @@ let sketch = (p: MyP5) => {
           Math.PI +
           p.animLoop.theta +
           (Math.PI * x) / w +
-          (Math.PI * i * 10) / iters;
-        p.circle(x, p.height / 2 + (h / 2) * Math.sin(theta), 30);
+          (Math.PI * i * 6) / iters;
+        let y = p.height / 2 + (h / 2) * Math.sin(theta);
+        let v = p.createVector(3, 0);
+        v.rotate(-theta + Math.PI / 2);
+        v.add(x, y);
+        p.line(x, y, v.x, v.y);
       }
     }
   };
