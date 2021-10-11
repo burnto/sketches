@@ -10,4 +10,5 @@ interface MyP5 extends p5 {
 
 interface FuncP5 extends MyP5 {
   Ease: any;
+  Gen: any;
 }

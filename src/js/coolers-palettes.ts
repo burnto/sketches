@@ -21,6 +21,41 @@ Palettes.set("regal", {
   "Blue NCS": "#0090c1",
 });
 
+Palettes.set("barbie", {
+  "Antique Brass": "#cb997e",
+  "Desert Sand": "#ddbea9",
+  "Champagne Pink": "#ffe8d6",
+  "Ash Gray": "#b7b7a4",
+  Artichoke: "#a5a58d",
+  Ebony: "#6b705c",
+});
+
+Palettes.set("sick-rainbow", {
+  Red: "#ff0000",
+  "Dark Orange": "#ff8700",
+  "Cyber Yellow": "#ffd300",
+  "Chartreuse Traditional": "#deff0a",
+  "Spring Bud": "#a1ff0a",
+  "Medium Spring Green": "#0aff99",
+  "Electric Blue": "#0aefff",
+  Azure: "#147df5",
+  "Han Purple": "#580aff",
+  "Electric Purple": "#be0aff",
+});
+
+/* Object */
+Palettes.set("reds", {
+  "Persian Plum": "#641220",
+  Burgundy: "#6e1423",
+  "Antique Ruby": "#85182a",
+  "Crimson UA": "#a11d33",
+  "Crimson UA 2": "#a71e34",
+  "Red NCS": "#b21e35",
+  "Red NCS 2": "#bd1f36",
+  Cardinal: "#c71f37",
+  Crimson: "#da1e37",
+  "Rose Madder": "#e01e37",
+});
 export function randomPalette(): Palette {
   return randomChoice([...Palettes.values()]);
 }
