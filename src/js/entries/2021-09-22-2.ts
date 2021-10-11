@@ -10,8 +10,6 @@ import func from "p5.js-func";
 func(P5);
 const p5 = P5 as unknown as FuncP5;
 
-console.log(p5.Ease);
-
 const EASE_OPTIONS = ["exponentialInOut", "circularOut", "linear"];
 const FIB = [3, 5, 8, 13, 21, 34];
 

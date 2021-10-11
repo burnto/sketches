@@ -5,15 +5,16 @@
   "scripts": {
     "start": "npm-run-all --parallel dev:*",
     "dev:eleventy": "eleventy --serve",
-    "dev:js": "esbuild --watch src/js/entries/* src/js/load.js src/js/helpers.ts  --format=esm --bundle --outdir=_site --outbase=src/js  --sourcemap --minify",
+    "foo:build": "esbuild --watch src/js/entries/* --format=esm --bundle --outdir=src/build --outbase=src/js/entries  --sourcemap --minify",
+    "dev:js": "esbuild --watch src/js/entries/* --entry-names=[name]/gen/[name] --format=esm --bundle --outdir=_site --outbase=src/js  --sourcemap --minify",
     "dev:tsc": "tsc -noEmit",
     "prod:eleventy": "eleventy",
-    "prod:js": "tsc -noEmit && esbuild src/js/entries/* src/js/load.js src/js/helpers.ts --format=esm --bundle --outdir=_site --outbase=src/js --minify",
+    "prod:js": "tsc -noEmit && esbuild src/js/entries/*  src/js/load.js src/js/helpers.ts --format=esm --bundle --outdir=_site --outbase=src/js --minify",
     "build": "run-s prod:*",
     "clean": "rm -rf _site .cache"
   },
   "author": "",
-  "license": "ISC",
+  "license": "none",
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
     "@types/p5": "^1.3.0",

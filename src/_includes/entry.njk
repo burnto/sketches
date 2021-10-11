@@ -1,5 +1,12 @@
 <div class='sketch'>
-  <div id="sketchContainer"></div>
+  <div id="sketchContainer">
+  <iframe id="sketchFrame"
+    title="{{currentEntry.title}}"
+    src="gen/"
+    frameborder="0" 
+    
+    ></iframe>
+    </div>
   <caption>
     <strong>{{currentEntry.title}}</strong>
   <br>
@@ -7,8 +14,14 @@
   </caption>
 </div>
 
-<script type="module"> 
-  import load from "/load.js";
-  const s = import("/entries/{{ currentEntry.baseFilename }}.js");
-  load(s);
+
+<script>
+  const frame = document.getElementById("sketchFrame");
+
+  function matchHeightToWidth() {
+    frame.style.height = frame.offsetWidth + "px";
+  }
+  window.addEventListener('DOMContentLoaded', matchHeightToWidth);
+  window.addEventListener('resize', matchHeightToWidth);
+
 </script>

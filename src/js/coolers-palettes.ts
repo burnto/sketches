@@ -21,6 +21,15 @@ Palettes.set("regal", {
   "Blue NCS": "#0090c1",
 });
 
+Palettes.set("retro-superhero", {
+  /* Object */
+  "Prussian Blue": "#003049",
+  "Maximum Red": "#d62828",
+  Orange: "#f77f00",
+  "Maximum Yellow Red": "#fcbf49",
+  "Lemon Meringue": "#eae2b7",
+});
+
 export function randomPalette(): Palette {
   return randomChoice([...Palettes.values()]);
 }

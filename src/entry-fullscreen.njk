@@ -1,0 +1,79 @@
+---
+pagination:
+  addAllPagesToCollections: true
+  data: entries
+  size: 1
+  alias: currentEntry
+eleventyComputed:
+  title: "{{ currentEntry.title }}"
+permalink: "/{{ currentEntry.baseFilename }}/gen/"
+---
+
+<html>
+  <head>
+    <title>
+      {{ currentEntry.title }}
+    </title>
+    <style>
+      html,
+      body {
+        margin: 0;
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div id="sketchContainer"></div>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    <script src="https://unpkg.com/p5.createloop@0.2.8/dist/p5.createloop.js"></script>
+
+    <script type="module">
+
+
+      function parseQueryString() {
+        const vars = {};
+        window.location.search.substring(1).split('&').forEach((p) => {
+          const [key, value] = p.split('=');
+          vars[decodeURIComponent(key)] = decodeURIComponent(value);
+        });
+        return vars;
+      }
+
+      const queryVars = parseQueryString();
+      const width = queryVars.width ? parseInt(queryVars.width, 10) : undefined;
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const sketchContainer = window.document.getElementById('sketchContainer');
+        let node = document.createElement('div');
+        let currentWidth = node.offsetWidth;
+        sketchContainer.appendChild(node);
+        import("./{{ currentEntry.baseFilename }}.js").then(s => {
+          let f = s.default;
+
+          let instWrapper = (p5inst) => {
+            p5inst.currentWidth = () => {
+              return width || node.offsetWidth;
+            }
+            f(p5inst);
+            p5inst.windowResized = () => {
+              if (width) {
+                console.log("resizing")
+                p5inst.resizeCanvas(width, width)
+                return;
+              } else {
+                const newWidth = node.offsetWidth;
+                const r = newWidth / p5inst.width;
+                const newHeight = r * p5inst.height;
+                p5inst.resizeCanvas(newWidth, newHeight)
+              }
+            }
+          }
+          new p5(instWrapper, node);
+        });
+      });
+
+    </script>
+  </body>
+</html>
+
