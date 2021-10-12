@@ -52,31 +52,32 @@ let sketch = (p: FuncP5) => {
     if (isPaused) {
       p.loadPixels();
       for (let i = 0; i < p.pixels.length; i++) {
-        if (Math.random() < 0.1) {
-          p.pixels[i] = p.pixels[i + p.width * 2] || 0;
-          p.pixels[i] = p.pixels[i + p.width * 4] || 0;
-        }
-        if (Math.random() < 0.1) {
+        if (Math.random() < 0.4) {
           p.pixels[i] = p.pixels[i + 4] || 0;
           p.pixels[i] = p.pixels[i + 8] || 0;
+          p.pixels[i] = p.pixels[i + 12] || 0;
+          p.pixels[i] = p.pixels[i + 16] || 0;
+          p.pixels[i] = p.pixels[i + 20] || 0;
         }
-        if (Math.random() < 0.1) {
+        if (Math.random() < 0.4) {
           p.pixels[i] = p.pixels[i - 4] || 0;
           p.pixels[i] = p.pixels[i - 8] || 0;
-        }
-        if (Math.random() < 0.1) {
-          p.pixels[i] = p.pixels[i - p.width * 2] || 0;
-          p.pixels[i] = p.pixels[i - p.width * 4] || 0;
+          p.pixels[i] = p.pixels[i - 12] || 0;
+          p.pixels[i] = p.pixels[i - 16] || 0;
+          p.pixels[i] = p.pixels[i - 20] || 0;
         }
       }
       for (let x = 0; x < p.width; x++) {
-        if (Math.random() < 0.01) {
-          for (let y = 0; y < p.height; y++) {
-            let i = y * p.width * 4 + x * 4;
-            p.pixels[i] = Math.abs(255 - p.pixels[i]);
-            p.pixels[i + 1] = Math.abs(255 - p.pixels[i + 1]);
-            p.pixels[i + 2] = Math.abs(255 - p.pixels[i + 2]);
-            p.pixels[i + 3] = 255;
+        if (Math.random() < 0.0008) {
+          let maxX = x + randomInt(1, 2);
+          for (; x < p.width && x < maxX; x++) {
+            for (let y = 0; y < p.height; y++) {
+              let i = y * p.width * 4 + x * 4;
+              p.pixels[i] = Math.abs(255 - p.pixels[i]);
+              p.pixels[i + 1] = Math.abs(255 - p.pixels[i + 1]);
+              p.pixels[i + 2] = Math.abs(255 - p.pixels[i + 2]);
+              p.pixels[i + 3] = 255;
+            }
           }
         }
       }
@@ -90,12 +91,14 @@ let sketch = (p: FuncP5) => {
       }
     }
 
+    let thresh = 0.3;
+
     for (let x = 0; x < p.width; x++) {
       for (let y = 0; y < p.height; y++) {
         let choice = Math.random();
-        if (choice < 0.2) {
+        if (choice < thresh) {
           p.set(x, y, 0x000000);
-        } else if (choice < 0.4) {
+        } else if (choice < thresh * 2) {
           p.set(x, y, 0xffffff);
         } else {
           // nothing
