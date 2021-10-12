@@ -10,7 +10,7 @@ const p5 = P5 as unknown as FuncP5;
 const gen = new p5.Gen();
 
 let sketch = (p: FuncP5) => {
-  const duration = 20;
+  const duration = 2;
   const frameRate = 30;
 
   let t = 0;
@@ -21,20 +21,19 @@ let sketch = (p: FuncP5) => {
     p.background(0);
     p.pixelDensity(1);
     p.frameRate(frameRate);
-
     let gif;
     if (hashContains("gif")) {
       gif = {
         options: { quality: 5, width: p.width, height: p.height },
         fileName: "bloc-out.gif",
-        startLoop: 2,
+        startLoop: 1,
+        endLoop: 1 + duration,
         download: hashContains("download"),
         open: hashContains("open"),
       };
     }
     p.createLoop({
       gif,
-      duration,
     });
     p.background(255);
     t = p.millis();
