@@ -16,6 +16,17 @@
     "build": "run-s prod:* installdeps",
     "clean": "rm -rf _site .cache"
   },
+  "watch": {
+    "installdeps": {
+      "patterns": [
+        "src/js"
+      ],
+      "extensions": "ts,js",
+      "quiet": true,
+      "delay": 100,
+      "runOnChangeOnly": false
+    }
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -25,6 +36,7 @@
     "date-fns": "^2.23.0",
     "esbuild": "^0.12.22",
     "npm-run-all": "^4.1.5",
+    "npm-watch": "^0.11.0",
     "nunjucks": "^3.2.3",
     "typescript": "^4.3.5"
   },

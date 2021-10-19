@@ -38,48 +38,26 @@
         color: #888;
       }
 
+      #entry caption {
+        display: none;
+      }
+
+      #index {
+        margin: 20px;
+      }
+
+      #index iframe {
+        width: 500px;
+        height: 500px;
+        border: 1px solid #ccc
+        cursor: pointer;
+      }
+
     </style>
   </head>
   <body>
-    {# <header>
-      <h1>
-          {% if title %}
-            <a href="/">bloc.art</a>
-          {% else %}
-            bloc.art
-          {% endif %}
-
-      </h1>
-    </header>
-    <main> #}
+    <main>
       {{ content | safe }}
     </main>
-    {# <footer>
-
-<nav>
-
-{% for entry in entries %}
-  <div>
-    {%- if entry == currentEntry -%}
-      <strong>{{entry.title}}</strong>
-    {%- else -%}
-      <a href="/{{ entry.baseFilename }}">{{entry.title}}</a>
-    {% endif -%}
-  </div>
-{% else %}
-  <div> 
-    Nothing here
-  </div>
-{% endfor %}
-
-</nav>
-
-<br/>
-<p>bloc.art is an exploratory sketchbook project by <a href="https://brentfitzgerald.com/">Brent Fitzgerald</a>. All rights reserved. Contact me if you're interested in collaborating.</p>
-
-<p><a href="https://github.com/burnto/sketches">repo</a></p>
-
-
-    </footer> #}
   </body>
 </html>

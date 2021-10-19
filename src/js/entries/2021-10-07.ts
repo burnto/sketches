@@ -18,7 +18,7 @@ let sketch = (p: MyP5) => {
   let bgColor = p.color(colors[4]);
 
   p.setup = () => {
-    p.createCanvas(600, 600);
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.background(0);
     p.pixelDensity(1);
     p.frameRate(frameRate);

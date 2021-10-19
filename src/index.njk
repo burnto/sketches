@@ -2,7 +2,51 @@
 layout: "base.njk"
 ---
 
+<div id="index">
 {% set currentEntry = entries[0] %}
-{% include 'entry.njk' %}
+<iframe  src="/{{ currentEntry.baseFilename }}" frameBorder="0" width="600" height="600" scrolling="no"></iframe>
+<nav>
+
+<footer>
+<nav>
+{% for entry in entries %}
+  <div>
+    {%- if entry == currentEntry -%}
+      <strong>{{entry.title}}</strong>
+    {%- else -%}
+      <a href="/{{ entry.baseFilename }}">{{entry.title}}</a>
+    {% endif -%}
+  </div>
+{% else %}
+  <div> 
+    Nothing here
+  </div>
+{% endfor %}
+
+</nav>
+
+<br/>
+<p>bloc.art is an exploratory sketchbook project by <a href="https://brentfitzgerald.com/">Brent Fitzgerald</a>. All rights reserved. Contact me if you're interested in collaborating.</p>
+
+</footer>
+
+</div>
 
 
+
+<script>
+function handleClick() {
+  window.location = "/{{ currentEntry.baseFilename }}";
+}
+window.addEventListener('DOMContentLoaded', (event) => {
+  const iframes = [...document.getElementsByTagName("iframe")];
+  iframes.forEach(elem => {
+    console.log(elem.contentWindow); 
+    elem.contentWindow.addEventListener('DOMContentLoaded', () => {
+      console.log(this);
+      elem.contentDocument.addEventListener('click', handleClick);
+    });
+  });
+});
+
+</script>

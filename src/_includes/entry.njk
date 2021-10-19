@@ -1,13 +1,15 @@
+<div id="entry">
 <div id="sketchContainer"></div>
 <caption>
   <strong>{{currentEntry.title}}</strong>
   <br>
   <a href="https://github.com/burnto/sketches/blob/main/src/js/entries/{{currentEntry.filename}}">source</a>
 </caption>
+</div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
-<script src="https://unpkg.com/p5.createloop@0.2.8/dist/p5.createloop.js"></script>
+<script src="./p5.min.js"></script>
+<script src="./p5.createloop.js"></script>
 <script src="./{{ currentEntry.baseFilename }}.js"></script>
 <script> 
  let s = window.sketch.default;
