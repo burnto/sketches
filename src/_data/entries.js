@@ -31,17 +31,21 @@ function generateTitle(filename) {
 }
 
 module.exports = function () {
-  const entriesPath = path.join(__dirname, '..', 'js', 'entries',)
+  const entriesPath = path.join(__dirname, '..', 'js', 'entries');
+  const thumbnailsPath = path.join(__dirname, '..', '..', 'static', 'thumbnails');
   const fileNames = fs.readdirSync(entriesPath);
   const sketchNames = fileNames
     .filter(f => !f.match('-draft'))
     .map((f) => {
       const baseFilename = f.replace(/.(?:js|ts)/, '');
       const title = generateTitle(f);
+      const thumbnailFilename = `${baseFilename}.gif`;
+      const thumbnail = fs.existsSync(path.join(thumbnailsPath, thumbnailFilename)) ? thumbnailFilename : undefined;
       return {
         title: title,
         baseFilename: baseFilename,
         filename: f,
+        thumbnail
       };
     });
 

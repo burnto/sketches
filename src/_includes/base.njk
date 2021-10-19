@@ -3,7 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% if title %}{{ title }} ⚡︎ {% endif %}bloc.art</title>
+    <meta name="author" content="Brent Fitzgerald">
+    {% if thumbnail %}
+      <meta property="og:image" content="{{thumbnail}}" />
+    {% endif %}
+    <title>{% if title %}{{ title }} - {% endif %}bloc.art</title>
     <style>
       html, body {
         text-align: left;

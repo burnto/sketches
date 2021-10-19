@@ -7,6 +7,7 @@ pagination:
     alias: currentEntry
 eleventyComputed:
   title: "{{ currentEntry.title }}"
+  thumbnail: "{{currentEntry.thumbnail}}"
 permalink: "/{{ currentEntry.baseFilename }}/"
 ---
 

@@ -11,17 +11,19 @@
     "prod:js": "tsc -noEmit && esbuild src/js/entries/*  --entry-names=[name]/[name] --format=iife --bundle --outdir=_site --outbase=src/js --minify --global-name=sketch",
     "watch:entries": "npm-watch installdeps",
     "installdeps": "run-p install:*",
+    "install:thumbs": "echo ./static/thumbnails/* | xargs -n 1 -I {f} basename {f} .gif | xargs -n 1 -I {f} cp static/thumbnails/{f}.gif _site/{f}/ ",
     "install:p5": "echo _site/20* | xargs -n 1 cp -v node_modules/p5/lib/p5.min.js",
     "install:createloop": "echo _site/20* | xargs -n 1 cp -v node_modules/p5.createloop/dist/p5.createloop.js",
-    "build": "run-s prod:* installdeps",
+    "build": "run-s clean prod:* installdeps",
     "clean": "rm -rf _site .cache"
   },
   "watch": {
     "installdeps": {
       "patterns": [
-        "src/js"
+        "src/js",
+        "static/thumbs"
       ],
-      "extensions": "ts,js",
+      "extensions": "ts,js,gif",
       "quiet": true,
       "delay": 100,
       "runOnChangeOnly": false
