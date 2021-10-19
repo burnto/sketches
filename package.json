@@ -8,7 +8,7 @@
     "dev:js": "esbuild --watch src/js/entries/* --entry-names=[name]/[name]  --format=iife --bundle --outdir=_site --outbase=src/js  --sourcemap --minify --global-name=sketch",
     "dev:tsc": "tsc -noEmit",
     "prod:eleventy": "eleventy",
-    "prod:js": "tsc -noEmit && esbuild src/js/entries/*  --format=iife --bundle --outdir=_site --outbase=src/js --minify --global-name=sketch",
+    "prod:js": "tsc -noEmit && esbuild src/js/entries/*  --entry-names=[name]/[name] --format=iife --bundle --outdir=_site --outbase=src/js --minify --global-name=sketch",
     "watch:entries": "npm-watch installdeps",
     "installdeps": "run-p install:*",
     "install:p5": "echo _site/20* | xargs -n 1 cp -v node_modules/p5/lib/p5.min.js",
