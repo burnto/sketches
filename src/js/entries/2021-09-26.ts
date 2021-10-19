@@ -80,7 +80,7 @@ class PatternMaker {
 const sketch = (p: MyP5) => {
   let shapes: PatternedShape[] = [];
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.noStroke();
     p.frameRate(30);
 

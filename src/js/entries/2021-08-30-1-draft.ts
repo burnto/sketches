@@ -9,7 +9,7 @@ let sketch = (p: MyP5) => {
   let bgColor = p.color(220);
 
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.background(bgColor);
     p.frameRate(frameRate);
     p.noFill();
@@ -36,8 +36,8 @@ let sketch = (p: MyP5) => {
   };
 
   p.draw = () => {
-    const w = p.currentWidth() - padding * 2;
-    const h = p.currentWidth() - padding * 2;
+    const w = p.width - padding * 2;
+    const h = p.height - padding * 2;
     p.background(bgColor);
     p.strokeWeight(1);
     p.stroke(255);

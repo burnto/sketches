@@ -2,7 +2,7 @@ import { MyP5 } from "../types";
 
 export default (p: MyP5) => {
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.noStroke();
     p.noiseSeed(1);
     p.noStroke();

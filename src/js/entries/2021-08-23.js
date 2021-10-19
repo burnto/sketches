@@ -9,7 +9,7 @@ let sketch = (p) => {
   let startColor = p.color(0, 180, 180, 100);
 
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.background(255);
     p.noFill();
     p.stroke(0, 0, 0, 100);
@@ -18,8 +18,8 @@ let sketch = (p) => {
   };
 
   p.draw = () => {
-    const w = p.currentWidth() - padding * 2;
-    const h = p.currentWidth() - padding * 2;
+    const w = p.height - padding * 2;
+    const h = p.height - padding * 2;
     p.background(240, 240, 240);
     for (let i = 0; i < iters; i++) {
       const th = i * Math.PI * 2 / iters;

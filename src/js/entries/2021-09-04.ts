@@ -24,7 +24,7 @@ let sketch = (p: MyP5) => {
   const endColor = p.color(0, 0.5, 1, 1);
 
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), p.currentWidth(), p.WEBGL);
+    p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL);
     p.frameRate(30);
     p.strokeWeight(0.5);
     p.noFill();

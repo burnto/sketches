@@ -14,7 +14,7 @@ const sketch = (p: MyP5) => {
   let g: Graphics;
   let circles: Circle[] = [];
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.noStroke();
     p.frameRate(30);
 

@@ -4,7 +4,7 @@ import { hashContains } from "../helpers.js";
 
 let sketch = (p: MyP5) => {
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.background(255);
     p.noFill();
     p.stroke(0, 0, 0, 100);
@@ -37,8 +37,8 @@ let sketch = (p: MyP5) => {
 
   p.draw = () => {
     // console.log(p.animLoop.theta);
-    const w = p.currentWidth();
-    const h = p.currentWidth();
+    const w = p.width;
+    const h = p.height;
     p.background(240, 240, 240);
     for (let i = 0; i < numPoints; i++) {
       const th = (i * Math.PI * 2) / numPoints;

@@ -37,7 +37,7 @@ function randomPointsRadial(num: number, maxRadius: number) {
 let sketch = (p: MyP5) => {
   let delaunator: Delaunator<[number, number]>;
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.createDiv("(randomly seeded; refresh to regenerate)");
     p.frameRate(30);
     p.background(10);

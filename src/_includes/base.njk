@@ -8,7 +8,7 @@
       html, body {
         text-align: left;
         font-family: monospace;
-        margin: 20px;
+        margin: 0;
         line-height: 1.8;
       }
 
@@ -22,7 +22,7 @@
       }
 
       #sketchContainer {
-        max-width: 550px;
+        width: 100%
       }
 
       footer {
@@ -38,50 +38,26 @@
         color: #888;
       }
 
+      #entry caption {
+        display: none;
+      }
+
+      #index {
+        margin: 20px;
+      }
+
+      #index iframe {
+        width: 500px;
+        height: 500px;
+        border: 1px solid #ccc
+        cursor: pointer;
+      }
+
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
-    <script src="https://unpkg.com/p5.createloop@0.2.8/dist/p5.createloop.js"></script>
   </head>
   <body>
-    <header>
-      <h1>
-          {% if title %}
-            <a href="/">bloc.art</a>
-          {% else %}
-            bloc.art
-          {% endif %}
-
-      </h1>
-    </header>
     <main>
       {{ content | safe }}
     </main>
-    <footer>
-
-<nav>
-
-{% for entry in entries %}
-  <div>
-    {%- if entry == currentEntry -%}
-      <strong>{{entry.title}}</strong>
-    {%- else -%}
-      <a href="/{{ entry.baseFilename }}">{{entry.title}}</a>
-    {% endif -%}
-  </div>
-{% else %}
-  <div> 
-    Nothing here
-  </div>
-{% endfor %}
-
-</nav>
-
-<br/>
-<p>bloc.art is an exploratory sketchbook project by <a href="https://brentfitzgerald.com/">Brent Fitzgerald</a>. All rights reserved. Contact me if you're interested in collaborating.</p>
-
-<p><a href="https://github.com/burnto/sketches">repo</a></p>
-
-
-    </footer>
   </body>
 </html>

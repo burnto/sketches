@@ -155,7 +155,7 @@ const sketch = (p: MyP5) => {
   };
 
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.noStroke();
     p.frameRate(30);
     rotation = randomChoice([0, Math.PI / 2, Math.PI, (3 * Math.PI) / 2]);

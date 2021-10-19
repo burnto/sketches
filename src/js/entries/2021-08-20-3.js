@@ -7,15 +7,15 @@ let sketch = (p) => {
   let endColor = p.color(128, 0, 255, 10)
 
   p.setup = () => {
-    const w = p.currentWidth();
-    const h = p.currentWidth();
+    const w = p.windowWidth;
+    const h = p.windowHeight;
     p.createCanvas(w, h);
     p.frameRate(1);
   }
 
   p.draw = () => {
-    const w = p.currentWidth();
-    const h = p.currentWidth();
+    const w = p.width;
+    const h = p.height;
     p.background(255);
 
     for (var i = 0; i < iters; i++) {

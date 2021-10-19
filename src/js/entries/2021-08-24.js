@@ -1,11 +1,7 @@
 export default (p) => {
 
-  const getHeight = () => {
-    return p.currentWidth();
-  }
-
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), getHeight(), p.WEBGL);
+    p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL);
   };
 
   p.draw = () => {
@@ -15,9 +11,9 @@ export default (p) => {
     const startColor = p.color(255, 255, 127 + 128 * (1 + Math.sin(Math.PI * 2 * p.frameCount / 100) / 2));
     const endColor = p.color(255, 128, 127 + 128 * (1 + Math.cos(Math.PI * 2 * p.frameCount / 200) / 2));
 
-    const padding = p.currentWidth() / 20;
-    const w = p.currentWidth() - padding * 2;
-    const h = getHeight() - padding * 2;
+    const padding = p.width / 20;
+    const w = p.width - padding * 2;
+    const h = p.height - padding * 2;
 
     const theta = (p.frameCount / 1000) * Math.PI * 2;
 

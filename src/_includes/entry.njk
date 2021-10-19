@@ -1,14 +1,26 @@
-<div class='sketch'>
-  <div id="sketchContainer"></div>
-  <caption>
-    <strong>{{currentEntry.title}}</strong>
+<div id="entry">
+<div id="sketchContainer"></div>
+<caption>
+  <strong>{{currentEntry.title}}</strong>
   <br>
   <a href="https://github.com/burnto/sketches/blob/main/src/js/entries/{{currentEntry.filename}}">source</a>
-  </caption>
+</caption>
 </div>
 
-<script type="module"> 
-  import load from "/load.js";
-  const s = import("/entries/{{ currentEntry.baseFilename }}.js");
-  load(s);
+
+<script src="./p5.min.js"></script>
+<script src="./p5.createloop.js"></script>
+<script src="./{{ currentEntry.baseFilename }}.js"></script>
+<script> 
+ let s = window.sketch.default;
+ const sketchContainer = window.document.getElementById('sketchContainer');
+
+ let resizingSketch = (p) => {
+   s(p);
+   p.windowResized = () => {
+    p.resizeCanvas(p.windowWidth, p.windowHeight)
+  }
+ }
+ 
+  new p5(resizingSketch, sketchContainer);
 </script>

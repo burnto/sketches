@@ -4,8 +4,8 @@ let sketch = (p) => {
   const iters = 1000;
 
   p.setup = () => {
-    const w = p.currentWidth();
-    const h = p.currentWidth();
+    const w = p.windowWidth;
+    const h = p.windowHeight;
     p.createCanvas(w, h);
     p.frameRate(1);
     p.noStroke();
@@ -15,8 +15,8 @@ let sketch = (p) => {
 
 
   p.draw = () => {
-    const w = p.currentWidth();
-    const h = p.currentWidth();
+    const w = p.width;
+    const h = p.height;
     p.clear();
     p.background(255);
     for (var f = 0; f < iters; f++) {
