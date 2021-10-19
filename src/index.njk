@@ -14,7 +14,7 @@ layout: "base.njk"
     {%- if entry == currentEntry -%}
       <strong>{{entry.title}}</strong>
     {%- else -%}
-      <a href="/{{ entry.baseFilename }}">{{entry.title}}</a>
+      <a href="/{{ entry.baseFilename }}/">{{entry.title}}</a>
     {% endif -%}
   </div>
 {% else %}
@@ -41,9 +41,7 @@ function handleClick() {
 window.addEventListener('DOMContentLoaded', (event) => {
   const iframes = [...document.getElementsByTagName("iframe")];
   iframes.forEach(elem => {
-    console.log(elem.contentWindow); 
     elem.contentWindow.addEventListener('DOMContentLoaded', () => {
-      console.log(this);
       elem.contentDocument.addEventListener('click', handleClick);
     });
   });
