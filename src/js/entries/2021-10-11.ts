@@ -27,7 +27,7 @@ let sketch = (p: FuncP5) => {
   );
 
   p.setup = () => {
-    p.createCanvas(500, 500);
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.background(0);
     p.pixelDensity(1);
     p.frameRate(frameRate);
