@@ -40,7 +40,6 @@ let sketch = (p: MyP5) => {
   p.draw = () => {
     let coords = randomPointsRadial(numPoints, p.width / 2 - 10);
     p.translate(p.width / 2, p.height / 2);
-    console.log(coords);
     const d = Delaunator.from(coords);
     const triangleCoords = new Array();
     for (let i = 0; i < d.triangles.length; i += 3) {

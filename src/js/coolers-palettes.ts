@@ -69,7 +69,6 @@ export function p5Colors(palette: Palette): p5.Color[] {
     let r = parseInt(s.substr(1, 2), 16);
     let g = parseInt(s.substr(3, 2), 16);
     let b = parseInt(s.substr(5, 2), 16);
-    console.log(r, g, b);
     const c = new p5.Color();
     c.setRed(r);
     c.setGreen(g);

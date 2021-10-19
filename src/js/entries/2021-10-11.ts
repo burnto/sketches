@@ -12,7 +12,6 @@ const p5 = P5 as unknown as FuncP5;
 const gen = new p5.Gen();
 
 let sketch = (p: FuncP5) => {
-  console.log(p);
   const padding = 0;
   const iters = 20;
   const duration = 5;

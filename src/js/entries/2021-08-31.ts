@@ -12,7 +12,6 @@ let sketch = (p: MyP5) => {
 
     let gif;
     if (hashContains("gif")) {
-      console.log("gif enabled");
       gif = {
         options: { quality: 5 },
         fileName: "bloc-out.gif",
@@ -36,7 +35,6 @@ let sketch = (p: MyP5) => {
   let startColor = p.color(0, 99, 200, 100);
 
   p.draw = () => {
-    // console.log(p.animLoop.theta);
     const w = p.width;
     const h = p.height;
     p.background(240, 240, 240);

@@ -82,10 +82,8 @@ export default (p: MyP5) => {
   p.draw = () => {
     p.set(currentX, currentY, color);
     if (obstacleInRange(1, 100)) {
-      console.log("right");
       turnRight();
     } else {
-      console.log("walk");
       walk();
     }
     p.updatePixels();

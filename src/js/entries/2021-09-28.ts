@@ -53,7 +53,6 @@ class PatternMaker {
 
   tick(progress: number) {
     let v = this.data.shift() || false;
-    console.log(v);
     this.data.push(v);
     this.data = this.data.map((p) => (Math.random() > 0.9 ? !p : p));
     this.data.forEach((d, i) => {

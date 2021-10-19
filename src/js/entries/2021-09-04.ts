@@ -31,7 +31,6 @@ let sketch = (p: MyP5) => {
 
     let gif;
     if (hashContains("gif")) {
-      console.log("gif enabled");
       gif = {
         startLoop: 1,
         endLoop: 2,

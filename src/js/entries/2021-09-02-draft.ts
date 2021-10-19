@@ -39,7 +39,6 @@ let sketch = (p: MyP5) => {
       },
     };
     p.createLoop({ gif });
-    // console.log(p.animLoop);
   };
 
   p.draw = () => {
