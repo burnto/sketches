@@ -97,7 +97,7 @@ const sketch = (p: MyP5) => {
 
   p.setup = () => {
     // Basic setup
-    p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.frameRate(30);
     p.noFill();
     p.createDiv("(randomly seeded; refresh to regenerate)");
@@ -105,8 +105,8 @@ const sketch = (p: MyP5) => {
     // Set up models
     for (let i = 0; i < numDisturbances; i++) {
       let pt = p.createVector(
-        Math.random() * p.currentWidth(),
-        Math.random() * p.currentWidth()
+        Math.random() * p.width,
+        Math.random() * p.height
       );
       let vec = p.createVector(Math.random() - 0.5, Math.random() - 0.5);
       vec.mult(4);

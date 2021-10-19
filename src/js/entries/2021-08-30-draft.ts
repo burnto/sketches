@@ -8,7 +8,7 @@ export default (p: MyP5) => {
   let color: Color;
 
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.noFill();
     p.background(30);
     p.stroke(220);

@@ -4,16 +4,14 @@ let sketch = (p) => {
   const iters = 1000;
 
   p.setup = () => {
-    const w = p.currentWidth();
-    const h = p.currentWidth();
-    p.createCanvas(w, h);
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.frameRate(1);
     p.noStroke();
   };
 
   p.draw = () => {
-    const w = p.currentWidth();
-    const h = p.currentWidth();
+    const w = p.width;
+    const h = p.height;
     p.clear();
     p.background(255);
     p.colorMode(p.RGB, 255, 255, 255, 1);

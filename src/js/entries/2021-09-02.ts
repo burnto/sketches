@@ -33,7 +33,7 @@ function randomPointsRadial(num: number, maxRadius: number) {
 
 let sketch = (p: MyP5) => {
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.frameRate(3);
     p.fill(255, 255, 255, 200);
   };

@@ -1,12 +1,9 @@
 export default (p) => {
 
-  const getHeight = () => {
-    return p.currentWidth();
-  }
   let detailX;
 
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), getHeight(), p.WEBGL);
+    p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL);
     p.frameRate(30)
 
     detailX = p.createSlider(0, 360, 1);
@@ -21,9 +18,9 @@ export default (p) => {
     const startColor = p.color(255, 128, detailX.value());
     const endColor = p.color(128, 0, 255);
 
-    const padding = p.currentWidth() / 20;
-    const w = p.currentWidth() - padding * 2;
-    const h = getHeight() - padding * 2;
+    const padding = p.width / 20;
+    const w = p.width - padding * 2;
+    const h = p.height - padding * 2;
 
     const theta = (p.frameCount / 10000) * Math.PI * 2;
 

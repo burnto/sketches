@@ -6,7 +6,7 @@ export default (p: MyP5) => {
   let waterPicker2: any;
 
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.noiseSeed(1);
     p.noStroke();
     p.fill(0);

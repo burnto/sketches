@@ -51,7 +51,7 @@ let sketch = (p: MyP5) => {
   }
 
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.createDiv("(randomly seeded; refresh to regenerate)");
     p.frameRate(30);
     p.background(10);

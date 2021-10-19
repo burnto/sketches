@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npm-run-all --parallel dev:*",
     "dev:eleventy": "eleventy --serve",
-    "dev:js": "esbuild --watch src/js/entries/* --format=iife --bundle --outdir=_site --outbase=src/js  --sourcemap --minify --global-name=sketch",
+    "dev:js": "esbuild --watch src/js/entries/* --entry-names=[name]/[name]  --format=iife --bundle --outdir=_site --outbase=src/js  --sourcemap --minify --global-name=sketch",
     "dev:tsc": "tsc -noEmit",
     "prod:eleventy": "eleventy",
     "prod:js": "tsc -noEmit && esbuild src/js/entries/*  --format=iife --bundle --outdir=_site --outbase=src/js --minify --global-name=sketch",

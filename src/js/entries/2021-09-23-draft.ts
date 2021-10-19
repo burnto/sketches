@@ -2,7 +2,7 @@ import { MyP5 } from "../types";
 
 const sketch = (p: MyP5) => {
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), p.currentWidth(), p.WEBGL);
+    p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL);
     p.createDiv("Creative direction by Cade (age 6)");
     p.colorMode(p.HSB, 1, 1, 1, 1);
     p.noStroke();

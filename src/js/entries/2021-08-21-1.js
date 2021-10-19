@@ -14,14 +14,14 @@ let sketch = (p) => {
   let startColor = p.color(10, 0, 120, 100);
 
   p.setup = () => {
-    p.createCanvas(p.currentWidth(), p.currentWidth());
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.background(0);
     p.noFill();
   };
 
   p.draw = () => {
-    const w = p.currentWidth() - padding * 2;
-    const h = p.currentWidth() - padding * 2;
+    const w = p.width - padding * 2;
+    const h = p.height - padding * 2;
     p.background(0);
     const f = p.frameCount % framesPerCycle;
     for (let i = 0; i < iters; i++) {
