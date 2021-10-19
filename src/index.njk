@@ -12,7 +12,9 @@ layout: "base.njk"
 {% for entry in entries %}
   <div>
     {%- if entry == currentEntry -%}
-      <strong>{{entry.title}}</strong>
+      <strong>
+        <a href="/{{ entry.baseFilename }}/">{{entry.title}}</a>
+      </strong>
     {%- else -%}
       <a href="/{{ entry.baseFilename }}/">{{entry.title}}</a>
     {% endif -%}
