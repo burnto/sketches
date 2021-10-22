@@ -166,10 +166,19 @@ const sketch = (p: MyP5) => {
 
   const render = (p: p5) => {
     p.translate(p.width / 2, p.height / 2);
-    p.rotate(rotation);
-    p.translate(p.width / -2, p.height / -2);
+    p.rotate((rotation * Math.PI) / 2);
+    console.log(rotation);
+    if (rotation % 2 === 0) {
+      p.translate(p.width / -2, p.height / -2);
+    } else {
+      p.translate(p.height / -2, p.width / -2);
+    }
     p.push();
-    segment.draw(p, 0, 0, p.width, p.height);
+    if (rotation % 2 === 0) {
+      segment.draw(p, 0, 0, p.width, p.height);
+    } else {
+      segment.draw(p, 0, 0, p.height, p.width);
+    }
     p.pop();
   };
 
@@ -177,7 +186,7 @@ const sketch = (p: MyP5) => {
     p.createCanvas(p.windowWidth, p.windowHeight);
     p.noStroke();
     p.frameRate(30);
-    rotation = randomChoice([0, Math.PI / 2, Math.PI, (3 * Math.PI) / 2]);
+    rotation = randomChoice([0, 1, 2, 3]);
 
     segment = new RecursiveSegment(p, 30, 200, Orientation.Horizontal, depth);
   };
