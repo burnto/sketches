@@ -12,15 +12,33 @@
 <script src="./p5.createloop.js"></script>
 <script src="./{{ currentEntry.baseFilename }}.js"></script>
 <script> 
- let s = window.sketch.default;
- const sketchContainer = window.document.getElementById('sketchContainer');
 
- let resizingSketch = (p) => {
-   s(p);
-   p.windowResized = () => {
-    p.resizeCanvas(p.windowWidth, p.windowHeight)
+  function parseQuery(queryString) {
+    var query = {};
+    var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
+    for (var i = 0; i < pairs.length; i++) {
+        var pair = pairs[i].split('=');
+        query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
+    }
+    return query;
   }
- }
- 
+  const queryVars = parseQuery(window.location.search.substring(1));
+
+  if (queryVars["embed"]) {
+    window.document.getElementById('sketchContainer').classList.add("embed");
+  }
+  
+
+  let s = window.sketch.default;
+  const sketchContainer = window.document.getElementById('sketchContainer');
+
+
+  let resizingSketch = (p) => {
+    s(p);
+    p.windowResized = () => {
+      p.resizeCanvas(p.windowWidth, p.windowHeight)
+    }
+  }
+
   new p5(resizingSketch, sketchContainer);
 </script>
