@@ -72,7 +72,7 @@ let sketch = (p: MyP5) => {
   let delaunator: Delaunator<[number, number]>;
   let stars: Star[];
   function radius() {
-    return p.width * radiusScale;
+    return Math.min(p.width, p.height) * radiusScale;
   }
 
   p.setup = () => {
