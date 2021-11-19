@@ -4,7 +4,7 @@ import { hashContains } from "../helpers";
 
 let sketch = (p: MyP5) => {
   p.colorMode(p.HSB, 1, 1, 1, 1);
-  const duration = 5;
+  const duration = 4;
 
   p.setup = () => {
     p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL);
@@ -66,7 +66,7 @@ let sketch = (p: MyP5) => {
     const tritriSide = 2 * triSide;
     const dim = 20;
 
-    p.background(0.1);
+    p.background(0);
     p.stroke(0.1, 1, 1.9);
     let originX = tritriSide * -((dim - 1) / 2);
     let originY = triHeight * 2 * -((dim - 1) / 2);
