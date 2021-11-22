@@ -1,18 +1,18 @@
-const fs = require('fs');
-const path = require('path');
-const crypto = require('crypto');
-const randy = require('randy');
-const Sentencer = require('sentencer');
-const nouns = require('sentencer/words/nouns');
+const fs = require("fs");
+const path = require("path");
+const crypto = require("crypto");
+const randy = require("randy");
+const Sentencer = require("sentencer");
+const nouns = require("sentencer/words/nouns");
 
 Sentencer.configure({
-  nounList: nouns.filter(n => n !== "japanese")
-})
+  nounList: nouns.filter((n) => n !== "japanese" && n !== "india"),
+});
 
 function generateTitle(filename) {
-  var md5sum = crypto.createHash('md5').update(filename).digest('binary');
+  var md5sum = crypto.createHash("md5").update(filename).digest("binary");
   randy.setState({
-    seed: Array.from(md5sum + md5sum).map(c => c.charCodeAt(0)),
+    seed: Array.from(md5sum + md5sum).map((c) => c.charCodeAt(0)),
     idx: 0,
   });
   const t = randy.choice([
@@ -26,26 +26,36 @@ function generateTitle(filename) {
     "{{a_noun}}",
     "{{nouns}}",
     "{{adjective}} and {{adjective}}",
-  ])
-  return Sentencer.make(t)
+  ]);
+  return Sentencer.make(t);
 }
 
 module.exports = function () {
-  const entriesPath = path.join(__dirname, '..', 'js', 'entries');
-  const thumbnailsPath = path.join(__dirname, '..', '..', 'static', 'thumbnails');
+  const entriesPath = path.join(__dirname, "..", "js", "entries");
+  const thumbnailsPath = path.join(
+    __dirname,
+    "..",
+    "..",
+    "static",
+    "thumbnails"
+  );
   const fileNames = fs.readdirSync(entriesPath);
   const sketchNames = fileNames
-    .filter(f => !f.match('-draft'))
+    .filter((f) => !f.match("-draft"))
     .map((f) => {
-      const baseFilename = f.replace(/.(?:js|ts)/, '');
+      const baseFilename = f.replace(/.(?:js|ts)/, "");
       const title = generateTitle(f);
       const thumbnailFilename = `${baseFilename}.gif`;
-      const thumbnail = fs.existsSync(path.join(thumbnailsPath, thumbnailFilename)) ? thumbnailFilename : undefined;
+      const thumbnail = fs.existsSync(
+        path.join(thumbnailsPath, thumbnailFilename)
+      )
+        ? thumbnailFilename
+        : undefined;
       return {
         title: title,
         baseFilename: baseFilename,
         filename: f,
-        thumbnail
+        thumbnail,
       };
     });
 
@@ -58,9 +68,8 @@ module.exports = function () {
     if (f2.length === 10) {
       f2 += "-0";
     }
-    return f2.localeCompare(f1, 'en', { sensitivity: 'base' });
-  })
+    return f2.localeCompare(f1, "en", { sensitivity: "base" });
+  });
 
   return sketchNames;
-}
-
+};
